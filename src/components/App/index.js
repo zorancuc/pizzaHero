@@ -210,7 +210,7 @@ class App extends React.Component {
         chestSlots: [],
         chestSlotString: '',
         tokenId: '',
-        tokenRatio: 0,
+        tokenPrice: 0,
         chestId: 0,
         eggId: 0,
         heroId: 0,
@@ -263,7 +263,7 @@ class App extends React.Component {
         this.onSireIDEdit = this.onSireIDEdit.bind(this);
         this.onChestIDEdit = this.onChestIDEdit.bind(this);
         this.onTokenIDEdit = this.onTokenIDEdit.bind(this);
-        this.onTokenRatioEdit = this.onTokenRatioEdit.bind(this);
+        this.onTokenPriceEdit = this.onTokenPriceEdit.bind(this);
         this.onEggIDEdit = this.onEggIDEdit.bind(this);
         this.onItemIDEdit = this.onItemIDEdit.bind(this);
         this.onHeroToAddressEdit = this.onHeroToAddressEdit.bind(this);
@@ -448,10 +448,10 @@ class App extends React.Component {
                 str += JSON.stringify(accountInfo.assetV2[i]) + '\n';
                 console.log(accountInfo.assetV2[i]);
                 // str += 
-                // if(accountInfo.assetV2[i].key === PZ_TOKEN_ID) {
-                //     tokenBalance = window.tronWeb.fromSun(accountInfo.assetV2[0].value);
-                //     break;
-                // }
+                if(accountInfo.assetV2[i].key === PZ_TOKEN_ID) {
+                    tokenBalance = window.tronWeb.fromSun(accountInfo.assetV2[0].value);
+                    break;
+                }
             }
         }
         
@@ -530,10 +530,10 @@ class App extends React.Component {
         this.setState({tokenId: value});
     }
 
-    onTokenRatioEdit({target: {
+    onTokenPriceEdit({target: {
         value
     }}) {
-        this.setState({tokenRatio: value});
+        this.setState({tokenPrice: value});
     }
     
     onItemIDEdit({target: {
@@ -715,18 +715,23 @@ class App extends React.Component {
         let price = this.state.chestPrice;
         let slots = this.state.chestSlots;
         var eggFlag = document.getElementById("eggFlag").checked;
+        let tokenId = this.state.tokenId;
+        let tokenPrice = this.state.tokenPrice;
 
         console.log(name);
         console.log(quantity);
         console.log(price);
         console.log(slots);
         console.log(eggFlag);
+        console.log(tokenId);
 
         Utils.pzChestContract
             .createChestGroup(
                 name,
                 quantity,
                 price * 1000000,
+                tokenId,
+                tokenPrice * 1000000,
                 0,
                 100,
                 100,
@@ -741,7 +746,7 @@ class App extends React.Component {
                 this.getInfo();
             });
 
-        this.setState({chestSlots: []});
+        this.setState({chestSlots: [], chestSlotString: ''});
     }
 
     onCreateChest1() {
@@ -1260,8 +1265,6 @@ class App extends React.Component {
 
         let i;
         let chestGroupId = this.state.chestGroupId;
-        let tokenId = this.state.tokenId;
-        let tokenRatio = this.state.tokenRatio;
         
         // console.log('Chest Group Supply');
         // let length = await Utils.pzChestContract.getChestGroupSupply().call();
@@ -1278,6 +1281,8 @@ class App extends React.Component {
         // }
         let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(chestGroupId).call();
         let price = parseInt(chestGroupInfo.price, 10);
+        let tokenPrice = parseInt(chestGroupInfo.tokenPrice, 10);
+        let tokenId = chestGroupInfo.tokenId;
         console.log("ID: " + chestGroupId);
         console.log(this.state.payment);
         console.log(price);
@@ -1289,7 +1294,7 @@ class App extends React.Component {
         } else if (this.state.payment === 'EVO') {
             await Utils.pzChestContract
                 .buyChest(chestGroupId, FOUNDATION_ADDRESS, false)
-                .send({ shouldPollResponse: true, tokenValue: price * tokenRatio, tokenId: tokenId });
+                .send({ shouldPollResponse: true, tokenValue: tokenPrice, tokenId: tokenId});
         }
     
         console.log(await this.getBoughtChests());
@@ -1352,8 +1357,8 @@ class App extends React.Component {
             <div>
                 <div> { this.state.address } </div> 
                 <div > { this.state.balance } TRX </div>
-                {/* <div > { this.state.tokenBalance } PZTT </div> */}
-                <div > { this.state.tokenString } </div>
+                <div > { this.state.tokenBalance } PZTT </div>
+                {/* <div > { this.state.tokenString } </div> */}
                 {/* <br/> */}
 
                 <div className = "footer" >
@@ -1464,6 +1469,23 @@ class App extends React.Component {
                     <div className = { 'chestSlotString' } > 
                         { this.state.chestSlotString } 
                     </div>
+
+                    <input readOnly value="Token Id:" style={{width: "100px"}}></input>
+                    <input
+                        value={this.state.tokenId}
+                        onChange={this.onTokenIDEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <input readOnly value="Token Price:" style={{width: "150px"}}></input>
+                    <input
+                        value={this.state.tokenPrice}
+                        onChange={this.onTokenPriceEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
                     <div className = { 'createChestButton1' }
                         onClick = { this.onCreateChest } >
                         Create Chests
@@ -1493,22 +1515,6 @@ class App extends React.Component {
                         {/* <p>{this.state.payment}</p> */}
                         {this.state.payment}
                     </select>
-
-                    <input readOnly value="Token Id:" style={{width: "100px"}}></input>
-                    <input
-                        value={this.state.tokenId}
-                        onChange={this.onTokenIDEdit}
-                        style={{marginRight: "20px"}}
-                    >
-                    </input>
-
-                    <input readOnly value="Token Ratio to TRX:" style={{width: "150px"}}></input>
-                    <input
-                        value={this.state.tokenRatio}
-                        onChange={this.onTokenRatioEdit}
-                        style={{marginRight: "20px"}}
-                    >
-                    </input>
 
                     <div className = { 'buyChest1' }
                         onClick = { this.onBuyChest1 } >

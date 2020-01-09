@@ -1,7 +1,7 @@
-const pzItemContractAddress = 'TDRCo4WemvQ87uWDwcWv3pJMKx7AeWtCBi';
-const pzEggContractAddress = 'TJKD5SHfw94nbdUYhJX5epgHdiBwxcZWwU';
-const pzHeroContractAddress = 'TH69Kd2j4AVni2TcTjxc5fV62JPaDB3yiH';
-const pzChestContractAddress = 'TGWF5uX7Hp9y32Ef8Jf3X1Can9YbfPTtsj';
+const pzItemContractAddress = 'TDKwjZrmT1RyDEJtTCW9GU9i3eHjq5ZMaj';
+const pzEggContractAddress = 'TYdpcKn4CVCpKPrEtHpn27wFATmnjzAfNc';
+const pzHeroContractAddress = 'TA4THgfyFzgjwvaxJsD3JDua4F5ony71Fx';
+const pzChestContractAddress = 'TLzVGMSm5RsDpnzQmKP325mHDa977cAdwj';
 
 const PZ_CHEST_NORMAL = 0;
 const PZ_CHEST_RARE = 1;

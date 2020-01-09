@@ -36,6 +36,8 @@ contract PZChest
     struct Chest {
         string      name;
         uint        price;
+        uint        tokenId;
+        uint        tokenPrice;
         uint        zaCoin;
         uint        chance;
         uint[][]    slot;
@@ -45,7 +47,10 @@ contract PZChest
     struct ChestGroup {
         string      name;
         uint        quantity;
+        uint        totalAmount;
         uint        price;
+        uint        tokenId;
+        uint        tokenPrice;
         uint        startDate;
         uint        endDate;
         uint        zaCoin;
@@ -58,7 +63,10 @@ contract PZChest
             address indexed _admin,
             string _name,
             uint _quantity,
+            uint _totalAmount,
             uint _price,
+            uint _tokenId,
+            uint _tokenPrice,
             uint _startDate,
             uint _endDate,
             uint _zaCoin,
@@ -234,6 +242,8 @@ contract PZChest
             string _name,
             uint _quantity,
             uint _price,
+            uint _tokenId,
+            uint _tokenPrice,
             uint _startDate,
             uint _endDate,
             uint _zaCoin,
@@ -247,8 +257,8 @@ contract PZChest
         require(_price > 0);
         require(_startDate < _endDate);
 
-        chestGroups.push(ChestGroup(_name, _quantity, _price, _startDate, _endDate, _zaCoin, _chance, _slot, _eggFlag));
-        emit CreateChestGroup(msg.sender, _name, _quantity, _price, _startDate, _endDate, _zaCoin, _chance, _slot, _eggFlag);
+        chestGroups.push(ChestGroup(_name, _quantity, _quantity, _price, _tokenId, _tokenPrice, _startDate, _endDate, _zaCoin, _chance, _slot, _eggFlag));
+        emit CreateChestGroup(msg.sender, _name, _quantity, _quantity, _price, _tokenId, _tokenPrice, _startDate, _endDate, _zaCoin, _chance, _slot, _eggFlag);
     }
 
     function _generateRandomZA(uint _rarity) private view returns (uint)
@@ -439,14 +449,15 @@ contract PZChest
                 addrAdmin.transfer(msg.value - msg.value / 10 * 2);
                 // addrAdmin.transfer(msg.value);
             }
-            newChestId = chests.push(Chest(_chestGroup.name, _chestGroup.price, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
+            newChestId = chests.push(Chest(_chestGroup.name, _chestGroup.price, _chestGroup.tokenId, _chestGroup.tokenPrice, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
             chestGroups[_chestGroupId].quantity = chestGroups[_chestGroupId].quantity - 1;
             _transfer(0, msg.sender, newChestId);
             emit BuyChest(msg.sender, _chestGroupId, _referrer, bTrxPurchase);
         } else {
             // uint256 _tokenBalance = contractToken.getTokenBalance(msg.sender, PZ_TOKEN_ID);
             // uint256 _valueInToken = _chestGroup.price * PZ_TOKEN_TRX_PROPOTION;
-            require (msg.tokenvalue == _chestGroup.price * PZ_TOKEN_TRX_PROPOTION);
+            require (msg.tokenid == _chestGroup.tokenId);
+            require (msg.tokenvalue == _chestGroup.tokenPrice);
         
             if (_referrer != address(0x0)) {
                 _referrer.transferToken(msg.tokenvalue / 10, msg.tokenid);
@@ -458,7 +469,7 @@ contract PZChest
                 // contractToken.transferToken(addrPool, _valueInToken / 10, PZ_TOKEN_ID);
                 // contractToken.transferToken(addrAdmin, _valueInToken - _valueInToken / 10 * 2, PZ_TOKEN_ID);
             }
-            newChestId = chests.push(Chest(_chestGroup.name, _chestGroup.price, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
+            newChestId = chests.push(Chest(_chestGroup.name, _chestGroup.price, _chestGroup.tokenId, _chestGroup.tokenPrice, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
             chestGroups[_chestGroupId].quantity = chestGroups[_chestGroupId].quantity - 1;
             _transfer(0, msg.sender, newChestId);
             emit BuyChest(msg.sender, _chestGroupId, _referrer, bTrxPurchase);
@@ -485,10 +496,12 @@ contract PZChest
     * @return slot                      chest slot
     *
     */
-    function getChestById(uint _id) external view returns(string name, uint price,uint zaCoin, uint chance, uint[][] slot, bool eggFlag)
+    function getChestById(uint _id) external view returns(
+        string name, uint price, uint tokenId, uint tokenPrice, uint zaCoin, uint chance, uint[][] slot, bool eggFlag
+        )
     {
         Chest memory chest = chests[_id];
-        return (chest.name, chest.price, chest.zaCoin, chest.chance, chest.slot, chest.eggFlag);
+        return (chest.name, chest.price, chest.tokenId, chest.tokenPrice, chest.zaCoin, chest.chance, chest.slot, chest.eggFlag);
     }
 
     /**
@@ -517,12 +530,12 @@ contract PZChest
     function getChestGroupById(uint _chestGroupId)
         external
         view
-        returns(string name, uint quantity, uint price, uint startDate, uint endDate, uint zaCoin, uint chance, uint[][] slot, bool eggFlag)
+        returns(string name, uint quantity, uint totalAmount, uint price, uint tokenId, uint tokenPrice, uint startDate, uint endDate, uint zaCoin, uint chance, uint[][] slot, bool eggFlag)
     {
         ChestGroup memory _chestGroup = chestGroups[_chestGroupId];
         return(_chestGroup.name,
-                _chestGroup.quantity,
-                _chestGroup.price, _chestGroup.startDate,
+                _chestGroup.quantity, _chestGroup.totalAmount,
+                _chestGroup.price, _chestGroup.tokenId, _chestGroup.tokenPrice, _chestGroup.startDate,
                 _chestGroup.endDate, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag);
     }
 
