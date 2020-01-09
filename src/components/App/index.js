@@ -17,6 +17,8 @@ const PZ_ITEM_RARE = 2;
 const PZ_ITEM_EPIC = 3;
 const PZ_ITEM_LEGENDARY = 4;
 
+const PZ_TOKEN_ID = "1000027";
+
 const ITEM_TYPE = ['Gear', 'Emote'];
 const ITEM_RARITY = ['COMMON', 'UNCOMMON', 'RARE', 'EPIC', 'LEGENDARY'];
 
@@ -189,8 +191,11 @@ class App extends React.Component {
         address: 0x0,
         balance: 0,
         tokenBalance : 0,
+        tokenString: '',
         availableChests: [],
         chests: [],
+        itemGroupString: '',
+        chestGroupString: '',
         chestString: '',
         itemString: '',
         eggString: '',
@@ -204,11 +209,15 @@ class App extends React.Component {
         chestSlot: [],
         chestSlots: [],
         chestSlotString: '',
+        tokenId: '',
+        tokenRatio: 0,
         chestId: 0,
         eggId: 0,
         heroId: 0,
         sireId: 0,
         itemId: 0,
+        chestGroupId: 0,
+        payment: 'TRX',
         chestToAddress: "TWrY88cShKxsn5j2bK4xrYQanGsN2VNcLi",
         eggToAddress: "TWrY88cShKxsn5j2bK4xrYQanGsN2VNcLi",
         heroToAddress: "TWrY88cShKxsn5j2bK4xrYQanGsN2VNcLi",
@@ -253,6 +262,8 @@ class App extends React.Component {
         this.onHeroIDEdit = this.onHeroIDEdit.bind(this);
         this.onSireIDEdit = this.onSireIDEdit.bind(this);
         this.onChestIDEdit = this.onChestIDEdit.bind(this);
+        this.onTokenIDEdit = this.onTokenIDEdit.bind(this);
+        this.onTokenRatioEdit = this.onTokenRatioEdit.bind(this);
         this.onEggIDEdit = this.onEggIDEdit.bind(this);
         this.onItemIDEdit = this.onItemIDEdit.bind(this);
         this.onHeroToAddressEdit = this.onHeroToAddressEdit.bind(this);
@@ -270,6 +281,8 @@ class App extends React.Component {
         this.onChestNameEdit = this.onChestNameEdit.bind(this);
         this.onChestQuantityEdit = this.onChestQuantityEdit.bind(this);
         this.onChestSlotEdit = this.onChestSlotEdit.bind(this);
+        this.onChestGroupIDEdit = this.onChestGroupIDEdit.bind(this);
+        this.onPaymentChange = this.onPaymentChange.bind(this);
 
         this.onBuyChest1 = this.onBuyChest1.bind(this);
         this.onBuyChest2 = this.onBuyChest2.bind(this);
@@ -384,17 +397,27 @@ class App extends React.Component {
         let length = await Utils.pzItemContract.getItemGroupSupply().call();
         length = parseInt(length._hex, 16);
         console.log(length);
+        let str = '';
         for (let i = 0; i < length; i++) {
-            console.log(await Utils.pzItemContract.getItemGroup(i).call());
+            let itemGroupInfo = await Utils.pzItemContract.getItemGroup(i).call();
+            str += "ItemGroupID: " + i + " " + JSON.stringify(itemGroupInfo) + '\n';
+            console.log(itemGroupInfo);
         }
+        console.log(str);
+        this.setState({itemGroupString: str});
 
         console.log('Chest Group Supply');
+        str = '';
         length = await Utils.pzChestContract.getChestGroupSupply().call();
         length = parseInt(length._hex, 16);
         console.log(length);
         for (let i = 0; i < length; i++) {
-            console.log(await Utils.pzChestContract.getChestGroupById(i).call());
+            let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
+            str += "  ChestGroupID: " + i + " " + JSON.stringify(chestGroupInfo) + '\n';
+            console.log(chestGroupInfo);
         }
+        console.log(str);
+        this.setState({chestGroupString: str});
     }
 
     // Polls blockchain for smart contract events
@@ -412,15 +435,30 @@ class App extends React.Component {
 
         let accountInfo = await window.tronWeb.trx.getAccount(address);
         console.log(accountInfo);
-        console.log(accountInfo.assetV2[0].value);
+        
 
         console.log(await window.tronWeb.trx.getAccount("TFf335okZGX1bkSiWZHLhdDDHaVNhrsFsh"));
         let balance = await window.tronWeb.trx.getBalance(address);
 
         balance = window.tronWeb.fromSun(balance);
-        let tokenBalance = window.tronWeb.fromSun(accountInfo.assetV2[0].value);
+        let tokenBalance = 0;
+        let str = '';
+        if (accountInfo.hasOwnProperty('assetV2')) {
+            for (let i = 0; i < accountInfo.assetV2.length; i ++) {
+                str += JSON.stringify(accountInfo.assetV2[i]) + '\n';
+                console.log(accountInfo.assetV2[i]);
+                // str += 
+                // if(accountInfo.assetV2[i].key === PZ_TOKEN_ID) {
+                //     tokenBalance = window.tronWeb.fromSun(accountInfo.assetV2[0].value);
+                //     break;
+                // }
+            }
+        }
+        
+        
         console.log(balance);
-        this.setState({ address: address, balance: balance, tokenBalance: tokenBalance});
+        console.log(tokenBalance);
+        this.setState({ address: address, balance: balance, tokenBalance: tokenBalance, tokenString: str});
         return balance;
     }
 
@@ -442,6 +480,12 @@ class App extends React.Component {
 
                 this.getInfo();
             });
+    }
+
+    onPaymentChange({target: {
+        value
+    }}) {
+        this.setState({payment: value});
     }
 
     onItemSellPriceEdit({target: {
@@ -480,6 +524,18 @@ class App extends React.Component {
         this.setState({chestId: value});
     }
 
+    onTokenIDEdit({target: {
+        value
+    }}) {
+        this.setState({tokenId: value});
+    }
+
+    onTokenRatioEdit({target: {
+        value
+    }}) {
+        this.setState({tokenRatio: value});
+    }
+    
     onItemIDEdit({target: {
             value
         }}) {
@@ -490,6 +546,12 @@ class App extends React.Component {
             value
         }}) {
         this.setState({heroId: value});
+    }
+
+    onChestGroupIDEdit({target: {
+            value
+        }}) {
+        this.setState({chestGroupId: value});
     }
 
     onSireIDEdit({target: {
@@ -652,11 +714,13 @@ class App extends React.Component {
         let quantity = this.state.chestQuantity;
         let price = this.state.chestPrice;
         let slots = this.state.chestSlots;
+        var eggFlag = document.getElementById("eggFlag").checked;
 
         console.log(name);
         console.log(quantity);
         console.log(price);
         console.log(slots);
+        console.log(eggFlag);
 
         Utils.pzChestContract
             .createChestGroup(
@@ -666,7 +730,8 @@ class App extends React.Component {
                 0,
                 100,
                 100,
-                10, slots
+                10, slots,
+                eggFlag
             )
             .send({ shouldPollResponse: true, callValue: 0 })
             .then((res) => Swal({ title: 'Create Chest Succeed', type: 'success' }))
@@ -676,7 +741,7 @@ class App extends React.Component {
                 this.getInfo();
             });
 
-        console.log()
+        this.setState({chestSlots: []});
     }
 
     onCreateChest1() {
@@ -748,7 +813,7 @@ class App extends React.Component {
                 parseInt(result[i]._hex, 16) +
                 ': ' +
                 parseInt(chestInfo.price, 10) +
-                '\n\n';
+                '\n';
         }
 
         console.log(str);
@@ -762,7 +827,7 @@ class App extends React.Component {
         result = result.ownerItems;
         console.log(result);
 
-        str += 'Items ';
+        str += '';
         for (let i = 0; i < result.length; i++) {
             console.log(result[i]._hex);
             let itemInfo = await Utils.getItem(result[i]._hex);
@@ -864,7 +929,7 @@ class App extends React.Component {
         result = result.ownerHeroes;
         console.log(result);
 
-        str += 'Heroes ';
+        str += '';
         for (let i = 0; i < result.length; i++) {
             console.log(result[i]._hex);
             let heroInfo = await Utils.getHero(result[i]._hex);
@@ -909,7 +974,7 @@ class App extends React.Component {
         result = result.ownerEggs;
         console.log(result);
 
-        str += 'Eggs ';
+        str += '';
         for (let i = 0; i < result.length; i++) {
             console.log(result[i]._hex);
             let eggInfo = await Utils.getEgg(result[i]._hex);
@@ -1194,25 +1259,39 @@ class App extends React.Component {
         // console.log(chests);
 
         let i;
-
-        console.log('Chest Group Supply');
-        let length = await Utils.pzChestContract.getChestGroupSupply().call();
-        length = parseInt(length._hex, 16);
-        console.log(length);
-        for (i = 0; i < length; i++) {
-            let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
-            console.log(parseInt(chestGroupInfo.price, 10));
-            if (parseInt(chestGroupInfo.price, 10) == 50 * 1000000) {
-                console.log(parseInt(chestGroupInfo.price, 10));
-                console.log(i);
-                break;
-            }
+        let chestGroupId = this.state.chestGroupId;
+        let tokenId = this.state.tokenId;
+        let tokenRatio = this.state.tokenRatio;
+        
+        // console.log('Chest Group Supply');
+        // let length = await Utils.pzChestContract.getChestGroupSupply().call();
+        // length = parseInt(length._hex, 16);
+        // console.log(length);
+        // for (i = 0; i < length; i++) {
+        //     let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
+        //     console.log(parseInt(chestGroupInfo.price, 10));
+        //     if (parseInt(chestGroupInfo.price, 10) == 50 * 1000000) {
+        //         console.log(parseInt(chestGroupInfo.price, 10));
+        //         console.log(i);
+        //         break;
+        //     }
+        // }
+        let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(chestGroupId).call();
+        let price = parseInt(chestGroupInfo.price, 10);
+        console.log("ID: " + chestGroupId);
+        console.log(this.state.payment);
+        console.log(price);
+        
+        if (this.state.payment === 'TRX') {
+            await Utils.pzChestContract
+                .buyChest(chestGroupId, FOUNDATION_ADDRESS, true)
+                .send({ shouldPollResponse: true, callValue: price });
+        } else if (this.state.payment === 'EVO') {
+            await Utils.pzChestContract
+                .buyChest(chestGroupId, FOUNDATION_ADDRESS, false)
+                .send({ shouldPollResponse: true, tokenValue: price * tokenRatio, tokenId: tokenId });
         }
- 
-        await Utils.pzChestContract
-            .buyChest(i, FOUNDATION_ADDRESS, true)
-            .send({ shouldPollResponse: true, callValue: 50 * 1000000 });
-
+    
         console.log(await this.getBoughtChests());
     }
 
@@ -1259,7 +1338,7 @@ class App extends React.Component {
         
         await Utils.pzChestContract
             .buyChest(i, FOUNDATION_ADDRESS, false)
-            .send({ shouldPollResponse: true, tokenValue: 50 * 1000000, tokenId: "1000024" });
+            .send({ shouldPollResponse: true, tokenValue: 50 * 1000000, tokenId: PZ_TOKEN_ID });
 
         console.log(await this.getBoughtChests());
     }
@@ -1273,7 +1352,8 @@ class App extends React.Component {
             <div>
                 <div> { this.state.address } </div> 
                 <div > { this.state.balance } TRX </div>
-                <div > { this.state.tokenBalance } PZTT </div>
+                {/* <div > { this.state.tokenBalance } PZTT </div> */}
+                <div > { this.state.tokenString } </div>
                 {/* <br/> */}
 
                 <div className = "footer" >
@@ -1304,7 +1384,11 @@ class App extends React.Component {
                     <div className = { 'createTestItems4' }
                         onClick = { this.onCreateItems } >
                         Create Items
-                    </div> 
+                    </div>
+
+                    <div className = { 'itemGroupString' } >
+                        {this.state.itemGroupString } 
+                    </div>
                 </div>
 
                 {/* <div className = "footer" > 
@@ -1364,13 +1448,15 @@ class App extends React.Component {
                         onChange={this.onChestPriceEdit}></input>
                     {/* <br/> */}
 
+                    <label>Egg:</label><input type="checkbox" id="eggFlag"></input>
+
                     <input readOnly value="Slot:" style={{width: "80px"}}></input>
                     <input
                         value={this.state.chestSlot}
                         style={{marginRight:"15px"}}
                         onChange={this.onChestSlotEdit}></input>
 
-                
+                    
                     <div className = { 'addSlot' }
                         onClick = { this.onAddSlot } >
                         +
@@ -1378,22 +1464,58 @@ class App extends React.Component {
                     <div className = { 'chestSlotString' } > 
                         { this.state.chestSlotString } 
                     </div>
-                    
-                </div>
-            
-
-                <div className = "footer"> 
                     <div className = { 'createChestButton1' }
                         onClick = { this.onCreateChest } >
                         Create Chests
                     </div>
 
+                    <div className = { 'chestGroupString' } >
+                        {this.state.chestGroupString } 
+                    </div>
+                    
+                </div>
+            
+
+                <div className = "footer"> 
+
+                    <input readOnly value="ChestGroupID:" style={{width: "130px"}}></input>
+                    <input
+                        value={this.state.chestGroupId}
+                        onChange={this.onChestGroupIDEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <select onChange={this.onPaymentChange} value={this.state.payment} style={{marginRight: "20px"}}>
+                        <option value="TRX">TRX</option>
+                        <option value="EVO">EVO</option>
+                        {/* <p></p> */}
+                        {/* <p>{this.state.payment}</p> */}
+                        {this.state.payment}
+                    </select>
+
+                    <input readOnly value="Token Id:" style={{width: "100px"}}></input>
+                    <input
+                        value={this.state.tokenId}
+                        onChange={this.onTokenIDEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <input readOnly value="Token Ratio to TRX:" style={{width: "150px"}}></input>
+                    <input
+                        value={this.state.tokenRatio}
+                        onChange={this.onTokenRatioEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
                     <div className = { 'buyChest1' }
                         onClick = { this.onBuyChest1 } >
-                        BUY FOR 50 TRX 
+                        BUY CHEST
                     </div> 
 
-                    <div className = { 'buyChest2'}
+                    {/* <div className = { 'buyChest2'}
                         onClick = { this.onBuyChest2 } >
                         BUY FOR 70 TRX
                     </div>
@@ -1401,7 +1523,7 @@ class App extends React.Component {
                     <div className = { 'buyChest3'}
                         onClick = { this.onBuyChest3 } >
                         BUY FOR 50 PZTT
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* <div className = "footer"> 
@@ -1689,7 +1811,7 @@ class App extends React.Component {
         // Utils.tronWeb.defaultAddress.base58 }         requiresTronLink={
         // !this.state.tronWeb.installed }         onTip={ this.onMessageTip } /> ));
 
-        return <div className = "kontainer" > { this.renderMessageInput() } < /div>;
+        return <div className = "kontainer" > { this.renderMessageInput() } </div>;
     }
 }
 

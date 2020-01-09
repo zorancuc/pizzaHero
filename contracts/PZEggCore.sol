@@ -37,7 +37,7 @@ contract PZEggCore is PZEggMarketplace
     function setChestAddr(address _addrChest) public onlyAdmin
     {
         require(_addrChest != address(0x0));
-        addrChest = _addrChest;
+        addrChest = _addrChest; 
 
     }
 
