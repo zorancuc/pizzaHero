@@ -105,14 +105,14 @@
     "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScienceInterface.sol",
     "exportedSymbols": {
       "PZGeneScienceInterface": [
-        4115
+        4100
       ]
     },
-    "id": 4116,
+    "id": 4101,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4075,
+        "id": 4060,
         "literals": [
           "solidity",
           "^",
@@ -120,16 +120,16 @@
           ".25"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:24:6"
       },
       {
         "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScience.sol",
         "file": "./PZGeneScience.sol",
-        "id": 4076,
+        "id": 4061,
         "nodeType": "ImportDirective",
-        "scope": 4116,
-        "sourceUnit": 4074,
-        "src": "26:29:8",
+        "scope": 4101,
+        "sourceUnit": 4059,
+        "src": "26:29:6",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -139,9 +139,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4115,
+        "id": 4100,
         "linearizedBaseContracts": [
-          4115
+          4100
         ],
         "name": "PZGeneScienceInterface",
         "nodeType": "ContractDefinition",
@@ -149,7 +149,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4081,
+            "id": 4066,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -157,23 +157,23 @@
             "name": "isGeneScience",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4077,
+              "id": 4062,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "118:2:8"
+              "src": "118:2:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4080,
+              "id": 4065,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4079,
+                  "id": 4064,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4081,
-                  "src": "142:4:8",
+                  "scope": 4066,
+                  "src": "142:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -181,10 +181,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4078,
+                    "id": 4063,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "142:4:8",
+                    "src": "142:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -194,10 +194,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "141:6:8"
+              "src": "141:6:6"
             },
-            "scope": 4115,
-            "src": "96:52:8",
+            "scope": 4100,
+            "src": "96:52:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -205,7 +205,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4092,
+            "id": 4077,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -213,16 +213,16 @@
             "name": "mixGenes",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4088,
+              "id": 4073,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4083,
+                  "id": 4068,
                   "name": "genes1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "172:14:8",
+                  "scope": 4077,
+                  "src": "172:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -230,10 +230,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4082,
+                    "id": 4067,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "172:7:8",
+                    "src": "172:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -244,11 +244,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4085,
+                  "id": 4070,
                   "name": "genes2",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "188:14:8",
+                  "scope": 4077,
+                  "src": "188:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -256,10 +256,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4084,
+                    "id": 4069,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "188:7:8",
+                    "src": "188:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -270,11 +270,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4087,
+                  "id": 4072,
                   "name": "targetBlock",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "204:19:8",
+                  "scope": 4077,
+                  "src": "204:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -282,10 +282,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4086,
+                    "id": 4071,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "204:7:8",
+                    "src": "204:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -295,20 +295,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "171:53:8"
+              "src": "171:53:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4091,
+              "id": 4076,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4090,
+                  "id": 4075,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "241:7:8",
+                  "scope": 4077,
+                  "src": "241:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -316,10 +316,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4089,
+                    "id": 4074,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "241:7:8",
+                    "src": "241:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -329,10 +329,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "240:9:8"
+              "src": "240:9:6"
             },
-            "scope": 4115,
-            "src": "154:96:8",
+            "scope": 4100,
+            "src": "154:96:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -340,7 +340,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4097,
+            "id": 4082,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -348,23 +348,23 @@
             "name": "generateGene0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4093,
+              "id": 4078,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "278:2:8"
+              "src": "278:2:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4096,
+              "id": 4081,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4095,
+                  "id": 4080,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4097,
-                  "src": "296:7:8",
+                  "scope": 4082,
+                  "src": "296:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -372,10 +372,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4094,
+                    "id": 4079,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "296:7:8",
+                    "src": "296:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -385,10 +385,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "295:9:8"
+              "src": "295:9:6"
             },
-            "scope": 4115,
-            "src": "256:49:8",
+            "scope": 4100,
+            "src": "256:49:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -396,7 +396,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4105,
+            "id": 4090,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -404,16 +404,16 @@
             "name": "decode",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4100,
+              "id": 4085,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4099,
+                  "id": 4084,
                   "name": "_genes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4105,
-                  "src": "326:14:8",
+                  "scope": 4090,
+                  "src": "326:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -421,10 +421,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4098,
+                    "id": 4083,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "326:7:8",
+                    "src": "326:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -434,20 +434,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "325:16:8"
+              "src": "325:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4104,
+              "id": 4089,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4103,
+                  "id": 4088,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4105,
-                  "src": "362:7:8",
+                  "scope": 4090,
+                  "src": "362:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -456,19 +456,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4101,
+                      "id": 4086,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "362:5:8",
+                      "src": "362:5:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4102,
+                    "id": 4087,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "362:7:8",
+                    "src": "362:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                       "typeString": "uint8[]"
@@ -478,10 +478,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "361:9:8"
+              "src": "361:9:6"
             },
-            "scope": 4115,
-            "src": "310:61:8",
+            "scope": 4100,
+            "src": "310:61:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -489,7 +489,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4114,
+            "id": 4099,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -497,16 +497,16 @@
             "name": "expressingTraits",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4108,
+              "id": 4093,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4107,
+                  "id": 4092,
                   "name": "_genes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4114,
-                  "src": "402:14:8",
+                  "scope": 4099,
+                  "src": "402:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -514,10 +514,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4106,
+                    "id": 4091,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:7:8",
+                    "src": "402:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -527,20 +527,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:16:8"
+              "src": "401:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4113,
+              "id": 4098,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4112,
+                  "id": 4097,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4114,
-                  "src": "438:9:8",
+                  "scope": 4099,
+                  "src": "438:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -549,27 +549,27 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4109,
+                      "id": 4094,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "438:5:8",
+                      "src": "438:5:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4111,
+                    "id": 4096,
                     "length": {
                       "argumentTypes": null,
                       "hexValue": "3134",
-                      "id": 4110,
+                      "id": 4095,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "444:2:8",
+                      "src": "444:2:6",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": null,
@@ -578,7 +578,7 @@
                       "value": "14"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "438:9:8",
+                    "src": "438:9:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$14_storage_ptr",
                       "typeString": "uint8[14]"
@@ -588,33 +588,33 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "437:11:8"
+              "src": "437:11:6"
             },
-            "scope": 4115,
-            "src": "376:73:8",
+            "scope": 4100,
+            "src": "376:73:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4116,
-        "src": "57:394:8"
+        "scope": 4101,
+        "src": "57:394:6"
       }
     ],
-    "src": "0:451:8"
+    "src": "0:451:6"
   },
   "legacyAST": {
     "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScienceInterface.sol",
     "exportedSymbols": {
       "PZGeneScienceInterface": [
-        4115
+        4100
       ]
     },
-    "id": 4116,
+    "id": 4101,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4075,
+        "id": 4060,
         "literals": [
           "solidity",
           "^",
@@ -622,16 +622,16 @@
           ".25"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:24:6"
       },
       {
         "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScience.sol",
         "file": "./PZGeneScience.sol",
-        "id": 4076,
+        "id": 4061,
         "nodeType": "ImportDirective",
-        "scope": 4116,
-        "sourceUnit": 4074,
-        "src": "26:29:8",
+        "scope": 4101,
+        "sourceUnit": 4059,
+        "src": "26:29:6",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -641,9 +641,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4115,
+        "id": 4100,
         "linearizedBaseContracts": [
-          4115
+          4100
         ],
         "name": "PZGeneScienceInterface",
         "nodeType": "ContractDefinition",
@@ -651,7 +651,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4081,
+            "id": 4066,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -659,23 +659,23 @@
             "name": "isGeneScience",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4077,
+              "id": 4062,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "118:2:8"
+              "src": "118:2:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4080,
+              "id": 4065,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4079,
+                  "id": 4064,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4081,
-                  "src": "142:4:8",
+                  "scope": 4066,
+                  "src": "142:4:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -683,10 +683,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4078,
+                    "id": 4063,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "142:4:8",
+                    "src": "142:4:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -696,10 +696,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "141:6:8"
+              "src": "141:6:6"
             },
-            "scope": 4115,
-            "src": "96:52:8",
+            "scope": 4100,
+            "src": "96:52:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -707,7 +707,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4092,
+            "id": 4077,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -715,16 +715,16 @@
             "name": "mixGenes",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4088,
+              "id": 4073,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4083,
+                  "id": 4068,
                   "name": "genes1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "172:14:8",
+                  "scope": 4077,
+                  "src": "172:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -732,10 +732,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4082,
+                    "id": 4067,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "172:7:8",
+                    "src": "172:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -746,11 +746,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4085,
+                  "id": 4070,
                   "name": "genes2",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "188:14:8",
+                  "scope": 4077,
+                  "src": "188:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -758,10 +758,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4084,
+                    "id": 4069,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "188:7:8",
+                    "src": "188:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -772,11 +772,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 4087,
+                  "id": 4072,
                   "name": "targetBlock",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "204:19:8",
+                  "scope": 4077,
+                  "src": "204:19:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -784,10 +784,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4086,
+                    "id": 4071,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "204:7:8",
+                    "src": "204:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -797,20 +797,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "171:53:8"
+              "src": "171:53:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4091,
+              "id": 4076,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4090,
+                  "id": 4075,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4092,
-                  "src": "241:7:8",
+                  "scope": 4077,
+                  "src": "241:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -818,10 +818,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4089,
+                    "id": 4074,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "241:7:8",
+                    "src": "241:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -831,10 +831,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "240:9:8"
+              "src": "240:9:6"
             },
-            "scope": 4115,
-            "src": "154:96:8",
+            "scope": 4100,
+            "src": "154:96:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -842,7 +842,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4097,
+            "id": 4082,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": false,
@@ -850,23 +850,23 @@
             "name": "generateGene0",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4093,
+              "id": 4078,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "278:2:8"
+              "src": "278:2:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4096,
+              "id": 4081,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4095,
+                  "id": 4080,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4097,
-                  "src": "296:7:8",
+                  "scope": 4082,
+                  "src": "296:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -874,10 +874,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4094,
+                    "id": 4079,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "296:7:8",
+                    "src": "296:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -887,10 +887,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "295:9:8"
+              "src": "295:9:6"
             },
-            "scope": 4115,
-            "src": "256:49:8",
+            "scope": 4100,
+            "src": "256:49:6",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
@@ -898,7 +898,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4105,
+            "id": 4090,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -906,16 +906,16 @@
             "name": "decode",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4100,
+              "id": 4085,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4099,
+                  "id": 4084,
                   "name": "_genes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4105,
-                  "src": "326:14:8",
+                  "scope": 4090,
+                  "src": "326:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -923,10 +923,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4098,
+                    "id": 4083,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "326:7:8",
+                    "src": "326:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -936,20 +936,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "325:16:8"
+              "src": "325:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4104,
+              "id": 4089,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4103,
+                  "id": 4088,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4105,
-                  "src": "362:7:8",
+                  "scope": 4090,
+                  "src": "362:7:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -958,19 +958,19 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4101,
+                      "id": 4086,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "362:5:8",
+                      "src": "362:5:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4102,
+                    "id": 4087,
                     "length": null,
                     "nodeType": "ArrayTypeName",
-                    "src": "362:7:8",
+                    "src": "362:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
                       "typeString": "uint8[]"
@@ -980,10 +980,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "361:9:8"
+              "src": "361:9:6"
             },
-            "scope": 4115,
-            "src": "310:61:8",
+            "scope": 4100,
+            "src": "310:61:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -991,7 +991,7 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4114,
+            "id": 4099,
             "implemented": false,
             "isConstructor": false,
             "isDeclaredConst": true,
@@ -999,16 +999,16 @@
             "name": "expressingTraits",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4108,
+              "id": 4093,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4107,
+                  "id": 4092,
                   "name": "_genes",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4114,
-                  "src": "402:14:8",
+                  "scope": 4099,
+                  "src": "402:14:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1016,10 +1016,10 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 4106,
+                    "id": 4091,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:7:8",
+                    "src": "402:7:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1029,20 +1029,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:16:8"
+              "src": "401:16:6"
             },
             "payable": false,
             "returnParameters": {
-              "id": 4113,
+              "id": 4098,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4112,
+                  "id": 4097,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4114,
-                  "src": "438:9:8",
+                  "scope": 4099,
+                  "src": "438:9:6",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1051,27 +1051,27 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4109,
+                      "id": 4094,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "438:5:8",
+                      "src": "438:5:6",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4111,
+                    "id": 4096,
                     "length": {
                       "argumentTypes": null,
                       "hexValue": "3134",
-                      "id": 4110,
+                      "id": 4095,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "444:2:8",
+                      "src": "444:2:6",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": null,
@@ -1080,7 +1080,7 @@
                       "value": "14"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "438:9:8",
+                    "src": "438:9:6",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$14_storage_ptr",
                       "typeString": "uint8[14]"
@@ -1090,20 +1090,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "437:11:8"
+              "src": "437:11:6"
             },
-            "scope": 4115,
-            "src": "376:73:8",
+            "scope": 4100,
+            "src": "376:73:6",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4116,
-        "src": "57:394:8"
+        "scope": 4101,
+        "src": "57:394:6"
       }
     ],
-    "src": "0:451:8"
+    "src": "0:451:6"
   },
   "compiler": {
     "name": "solc",
@@ -1111,5 +1111,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2020-01-09T11:58:49.263Z"
+  "updatedAt": "2020-01-15T17:21:03.413Z"
 }

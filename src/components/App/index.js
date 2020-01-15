@@ -188,6 +188,9 @@ class App extends React.Component {
             installed: false,
             loggedIn: false
         },
+        itemAmount: 0,
+        itemGroupId: 0,
+        chestAmount: 0,
         address: 0x0,
         balance: 0,
         tokenBalance : 0,
@@ -206,9 +209,12 @@ class App extends React.Component {
         chestName: '',
         chestQuantity: 0,
         chestPrice: 0,
+        itemTRXPrice: 0,
+        itemTokenPrice: 0,
         chestSlot: [],
         chestSlots: [],
         chestSlotString: '',
+        itemTokenId: '',
         tokenId: '',
         tokenPrice: 0,
         chestId: 0,
@@ -237,6 +243,10 @@ class App extends React.Component {
         // this.onMessageSend.bind(this); this.onMessageTip =
         // this.onMessageTip.bind(this);
 
+        this.onBuyItems = this.onBuyItems.bind(this);
+        this.onItemGroupIDEdit = this.onItemGroupIDEdit.bind(this);
+        this.onItemAmountEdit = this.onItemAmountEdit.bind(this);
+        this.onChestAmountEdit = this.onChestAmountEdit.bind(this);
         this.onGetInfo = this.onGetInfo.bind(this);
         this.onGiftChest = this.onGiftChest.bind(this);
         this.onGiftEgg = this.onGiftEgg.bind(this);
@@ -277,6 +287,10 @@ class App extends React.Component {
         this.onNameEdit = this.onNameEdit.bind(this);
         this.onQuantityEdit = this.onQuantityEdit.bind(this);
 
+        this.onItemTRXPriceEdit = this.onItemTRXPriceEdit.bind(this);
+        this.onItemTokenIDEdit = this.onItemTokenIDEdit.bind(this);
+        this.onItemTokenPriceEdit = this.onItemTokenPriceEdit.bind(this);
+
         this.onChestPriceEdit = this.onChestPriceEdit.bind(this);
         this.onChestNameEdit = this.onChestNameEdit.bind(this);
         this.onChestQuantityEdit = this.onChestQuantityEdit.bind(this);
@@ -285,14 +299,7 @@ class App extends React.Component {
         this.onPaymentChange = this.onPaymentChange.bind(this);
 
         this.onBuyChest1 = this.onBuyChest1.bind(this);
-        this.onBuyChest2 = this.onBuyChest2.bind(this);
-        this.onBuyChest3 = this.onBuyChest3.bind(this);
         this.onCreateChest = this.onCreateChest.bind(this);
-        this.onCreateChest1 = this.onCreateChest1.bind(this);
-        this.onCreateChest2 = this.onCreateChest2.bind(this);
-        this.onCreateItems1 = this.onCreateItems1.bind(this);
-        this.onCreateItems2 = this.onCreateItems2.bind(this);
-        this.onCreateItems3 = this.onCreateItems3.bind(this);
         this.onOpenChest = this.onOpenChest.bind(this);
         this.onOpenEgg = this.onOpenEgg.bind(this);
         // this.onTokenTest = this.onTokenTest.bind(this);
@@ -469,18 +476,7 @@ class App extends React.Component {
     // messages: {             recent,             featured         }     }); return
     // message; }
 
-    onCreateItems4() {
-        Utils.pzItemContract
-            .createItemGroup('TEST1', 10, PZ_ITEM_COMMON, PZ_ITEM_GEAR)
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-
-                this.getInfo();
-            });
-    }
+    
 
     onPaymentChange({target: {
         value
@@ -554,6 +550,42 @@ class App extends React.Component {
         this.setState({chestGroupId: value});
     }
 
+    onItemAmountEdit({target: {
+            value
+        }}) {
+        this.setState({itemAmount: value});
+    }
+
+    onItemGroupIDEdit({target: {
+            value
+        }}) {
+        this.setState({itemGroupId: value});
+    }
+
+    onChestAmountEdit({target: {
+            value
+        }}) {
+        this.setState({chestAmount: value});
+    }
+    
+    onItemTRXPriceEdit({target: {
+            value
+        }}) {
+        this.setState({itemTRXPrice: value});
+    }
+
+    onItemTokenIDEdit({target: {
+            value
+        }}) {
+        this.setState({itemTokenId: value});
+    }
+    
+    onItemTokenPriceEdit({target: {
+            value
+        }}) {
+        this.setState({itemTokenPrice: value});
+    }
+    
     onSireIDEdit({target: {
             value
         }}) {
@@ -620,30 +652,23 @@ class App extends React.Component {
         this.setState({itemQuantity: value});
     }
 
-    onCreateItems5() {
-        Utils.pzItemContract
-            .createItemGroup('TEST2', 10, PZ_ITEM_UNCOMMON, PZ_ITEM_GEAR)
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-
-                this.getInfo();
-            });
-    }
-
     onCreateItems() {
         let name = this.state.itemName;
         let rarity = this.state.itemRarity;
         let quantity = this.state.itemQuantity;
+        let trxPrice = this.state.itemTRXPrice;
+        let itemTokenId = this.state.itemTokenId;
+        let itemTokenPrice = this.state.itemTokenPrice;
 
         console.log(name);
         console.log(rarity);
         console.log(quantity);
+        console.log(trxPrice);
+        console.log(itemTokenId);
+        console.log(itemTokenPrice);
 
         Utils.pzItemContract
-            .createItemGroup(name, quantity, rarity, PZ_ITEM_GEAR)
+            .createItemGroup(trxPrice * 1000000, itemTokenId, itemTokenPrice * 1000000, name, quantity, rarity, PZ_ITEM_GEAR)
             .send({ shouldPollResponse: true, callValue: 0 })
             .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
             .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
@@ -668,45 +693,6 @@ class App extends React.Component {
             chestSlots: chestSlots,
             chestSlotString: chestSlotString
         })
-    }
-
-    onCreateItems1() {
-        Utils.pzItemContract
-            .createItemGroup('TEST3', 10, PZ_ITEM_RARE, PZ_ITEM_GEAR)
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-
-                this.getInfo();
-            });
-    }
-
-    onCreateItems2() {
-        Utils.pzItemContract
-            .createItemGroup('TEST4', 10, PZ_ITEM_EPIC, PZ_ITEM_GEAR)
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-
-                this.getInfo();
-            });
-    }
-
-    onCreateItems3() {
-        Utils.pzItemContract
-            .createItemGroup('TEST5', 10, PZ_ITEM_LEGENDARY, PZ_ITEM_GEAR)
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Items Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Items Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-
-                this.getInfo();
-            });
     }
 
     onCreateChest() {
@@ -747,50 +733,6 @@ class App extends React.Component {
             });
 
         this.setState({chestSlots: [], chestSlotString: ''});
-    }
-
-    onCreateChest1() {
-        Utils.pzChestContract
-            .createChests(
-                'Chest1',
-                10,
-                50 * 1000000,
-                0,
-                100,
-                100,
-                10, [
-                    [0],
-                    [0]
-                ]
-            )
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Chest Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Chest Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-            });
-    }
-
-    onCreateChest2() {
-        Utils.pzChestContract
-            .createChests(
-                'Chest2',
-                10,
-                70 * 1000000,
-                0,
-                100,
-                100,
-                10, [
-                    [0],
-                    [0]
-                ]
-            )
-            .send({ shouldPollResponse: true, callValue: 0 })
-            .then((res) => Swal({ title: 'Create Chest Succeed', type: 'success' }))
-            .catch((err) => Swal({ title: 'Create Chest Failed', type: 'error' }))
-            .then(() => {
-                console.log('OKOK');
-            });
     }
 
     async getAvailableChests() {
@@ -1256,6 +1198,53 @@ class App extends React.Component {
         console.log(await this.getEggs());
     }
 
+    
+    async onBuyItems() {
+        // await this.getAvailableChests();
+        // console.log(this.state.availableChests);
+        // let chests = [];
+        // chests = this.state.availableChests.ownerChests;
+        // console.log(chests);
+
+        let i;
+        let itemGroupId = this.state.itemGroupId;
+        
+        // console.log('Chest Group Supply');
+        // let length = await Utils.pzChestContract.getChestGroupSupply().call();
+        // length = parseInt(length._hex, 16);
+        // console.log(length);
+        // for (i = 0; i < length; i++) {
+        //     let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
+        //     console.log(parseInt(chestGroupInfo.price, 10));
+        //     if (parseInt(chestGroupInfo.price, 10) == 50 * 1000000) {
+        //         console.log(parseInt(chestGroupInfo.price, 10));
+        //         console.log(i);
+        //         break;
+        //     }
+        // }
+        let itemGroupInfo = await Utils.pzItemContract.getItemGroup(itemGroupId).call();
+        let price = parseInt(itemGroupInfo.price, 10);
+        let tokenPrice = parseInt(itemGroupInfo.tokenPrice, 10);
+        let tokenId = itemGroupInfo.tokenId;
+        let itemAmount = this.state.itemAmount;
+        console.log("ID: " + itemGroupId);
+        console.log(this.state.payment);
+        console.log(price);
+        console.log(itemAmount);
+        
+        if (this.state.payment === 'TRX') {
+            await Utils.pzItemContract
+                .buyItems(itemGroupId, FOUNDATION_ADDRESS, itemAmount, true)
+                .send({ shouldPollResponse: true, callValue: price * itemAmount });
+        } else if (this.state.payment === 'EVO') {
+            await Utils.pzItemContract
+                .buyItems(itemGroupId, FOUNDATION_ADDRESS, itemAmount, false)
+                .send({ shouldPollResponse: true, tokenValue: tokenPrice * itemAmount, tokenId: tokenId});
+        }
+    
+        // console.log(await this.getBoughtChests());
+    }
+
     async onBuyChest1() {
         // await this.getAvailableChests();
         // console.log(this.state.availableChests);
@@ -1283,68 +1272,21 @@ class App extends React.Component {
         let price = parseInt(chestGroupInfo.price, 10);
         let tokenPrice = parseInt(chestGroupInfo.tokenPrice, 10);
         let tokenId = chestGroupInfo.tokenId;
+        let chestAmount = this.state.chestAmount;
         console.log("ID: " + chestGroupId);
         console.log(this.state.payment);
         console.log(price);
         
         if (this.state.payment === 'TRX') {
             await Utils.pzChestContract
-                .buyChest(chestGroupId, FOUNDATION_ADDRESS, true)
-                .send({ shouldPollResponse: true, callValue: price });
+                .buyChest(chestGroupId, FOUNDATION_ADDRESS, chestAmount, true)
+                .send({ shouldPollResponse: true, callValue: price * chestAmount });
         } else if (this.state.payment === 'EVO') {
             await Utils.pzChestContract
-                .buyChest(chestGroupId, FOUNDATION_ADDRESS, false)
-                .send({ shouldPollResponse: true, tokenValue: tokenPrice, tokenId: tokenId});
+                .buyChest(chestGroupId, FOUNDATION_ADDRESS, chestAmount, false)
+                .send({ shouldPollResponse: true, tokenValue: tokenPrice * chestAmount, tokenId: tokenId});
         }
     
-        console.log(await this.getBoughtChests());
-    }
-
-    async onBuyChest2() {
-        let i;
-
-        console.log('Chest Group Supply');
-        let length = await Utils.pzChestContract.getChestGroupSupply().call();
-        length = parseInt(length._hex, 16);
-        console.log(length);
-        for (i = 0; i < length; i++) {
-            let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
-            console.log(parseInt(chestGroupInfo.price, 10));
-            if (parseInt(chestGroupInfo.price, 10) == 70 * 1000000) {
-                console.log(parseInt(chestGroupInfo.price, 10));
-                console.log(i);
-                break;
-            }
-        }
- 
-        await Utils.pzChestContract
-            .buyChest(i, FOUNDATION_ADDRESS, true)
-            .send({ shouldPollResponse: true, callValue: 70 * 1000000 });
-
-        console.log(await this.getBoughtChests());
-    }
-
-    async onBuyChest3() {
-        let i;
-
-        console.log('Chest Group Supply');
-        let length = await Utils.pzChestContract.getChestGroupSupply().call();
-        length = parseInt(length._hex, 16);
-        console.log(length);
-        for (i = 0; i < length; i++) {
-            let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
-            console.log(parseInt(chestGroupInfo.price, 10));
-            if (parseInt(chestGroupInfo.price, 10) == 50 * 1000000) {
-                console.log(parseInt(chestGroupInfo.price, 10));
-                console.log(i);
-                break;
-            }
-        }
-        
-        await Utils.pzChestContract
-            .buyChest(i, FOUNDATION_ADDRESS, false)
-            .send({ shouldPollResponse: true, tokenValue: 50 * 1000000, tokenId: PZ_TOKEN_ID });
-
         console.log(await this.getBoughtChests());
     }
 
@@ -1383,9 +1325,32 @@ class App extends React.Component {
                         value={this.state.itemQuantity}
                         style={{marginRight:"15px"}}
                         onChange={this.onQuantityEdit}></input>
+                    <br/>
+
+
+                    <input readOnly value="ItemPrice:" style={{width: "80px"}}></input>
+                    <input
+                        type='number'
+                        value={this.state.itemTRXPrice}
+                        onChange={this.onItemTRXPriceEdit}></input>
                     {/* <br/> */}
 
-                
+                    <input readOnly value="Token Id:" style={{width: "100px"}}></input>
+                    <input
+                        value={this.state.itemTokenId}
+                        onChange={this.onItemTokenIDEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <input readOnly value="Token Price:" style={{width: "150px"}}></input>
+                    <input
+                        value={this.state.itemTokenPrice}
+                        onChange={this.onItemTokenPriceEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
                     <div className = { 'createTestItems4' }
                         onClick = { this.onCreateItems } >
                         Create Items
@@ -1396,40 +1361,36 @@ class App extends React.Component {
                     </div>
                 </div>
 
-                {/* <div className = "footer" > 
-                    <div className = { 'createTestItems4' }
-                        onClick = { this.onCreateItems4 } >
-                        Create Items1(Name: TEST1, Quantity: 10, Rarity: COMMON, Type: Gear) 
-                    </div> 
-                </div>
-
                 <div className = "footer"> 
-                    <div className = { 'createTestItems5' }
-                        onClick = { this.onCreateItems5 } >
-                        Create Items2(Name: TEST2, Quantity: 10, Rarity: UNCOMMON, Type: Gear) 
-                    </div> 
-                </div>
 
-                <div className = "footer" > 
-                    <div className = { 'createTestItems1' }
-                        onClick = { this.onCreateItems1 } >
-                        Create Items3(Name: TEST3, Quantity: 10, Rarity: Rare, Type: Gear)
+                    <input readOnly value="ItemGroupID:" style={{width: "130px"}}></input>
+                    <input
+                        value={this.state.itemGroupId}
+                        onChange={this.onItemGroupIDEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <select onChange={this.onPaymentChange} value={this.state.payment} style={{marginRight: "20px"}}>
+                        <option value="TRX">TRX</option>
+                        <option value="EVO">EVO</option>
+                        {this.state.payment}
+                    </select>
+
+                    <input readOnly value="Item Amount:" style={{width: "150px"}}></input>
+                    <input
+                        value={this.state.itemAmount}
+                        onChange={this.onItemAmountEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
+
+                    <div className = { 'buyItem' }
+                        onClick = { this.onBuyItems } >
+                        BUY ITEM
                     </div>
-                </div>
 
-                <div className = "footer" >
-                    <div className = { 'createTestItems2' }
-                        onClick = { this.onCreateItems2 } >
-                        Create Items4(Name: TEST4, Quantity: 10, Rarity: Epic, Type: Gear)
-                    </div> 
                 </div>
-
-                <div className = "footer">
-                    <div className = { 'createTestItems3' }
-                        onClick = { this.onCreateItems3 } >
-                        Create Items5(Name: TEST5, Quantity: 10, Rarity: Legendary, Type: Gear)
-                    </div>
-                </div> */}
 
                 <br/>
                 <div className = "footer"> 
@@ -1511,58 +1472,24 @@ class App extends React.Component {
                     <select onChange={this.onPaymentChange} value={this.state.payment} style={{marginRight: "20px"}}>
                         <option value="TRX">TRX</option>
                         <option value="EVO">EVO</option>
-                        {/* <p></p> */}
-                        {/* <p>{this.state.payment}</p> */}
                         {this.state.payment}
                     </select>
+
+                    <input readOnly value="Chest Amount:" style={{width: "150px"}}></input>
+                    <input
+                        value={this.state.chestAmount}
+                        onChange={this.onChestAmountEdit}
+                        style={{marginRight: "20px"}}
+                    >
+                    </input>
 
                     <div className = { 'buyChest1' }
                         onClick = { this.onBuyChest1 } >
                         BUY CHEST
-                    </div> 
-
-                    {/* <div className = { 'buyChest2'}
-                        onClick = { this.onBuyChest2 } >
-                        BUY FOR 70 TRX
                     </div>
 
-                    <div className = { 'buyChest3'}
-                        onClick = { this.onBuyChest3 } >
-                        BUY FOR 50 PZTT
-                    </div> */}
                 </div>
-
-                {/* <div className = "footer"> 
-                    <div className = { 'createChestButton1' }
-                        onClick = { this.onCreateChest1 } >
-                        Create Chests1(Name: Chest1, Price: 50 TRX, Quantity: 3, Slot: 2
-                    </div>
-                </div>
-
-                <div className = "footer">
-                    <div className = { 'createChestButton2' }
-                        onClick = { this.onCreateChest2 } >
-                        Create Chests2(Name: Chest1, Price: 70 TRX, Quantity: 3, Slot: 2
-                    </div> 
-                </div> */}
                 
-                {/* <br/>
-
-                <div className = "footer">
-                    <div className = { 'buyChest1' }
-                        onClick = { this.onBuyChest1 } >
-                        BUY FOR 50 TRX 
-                    </div> 
-                </div>
-
-                <div className = "footer">
-                    <div className = { 'buyChest2'}
-                        onClick = { this.onBuyChest2 } >
-                        BUY FOR 70 TRX
-                    </div>
-                </div> */}
-                
-                {/* <br/> */}
                 <div className = { 'chestString' } > 
                     { this.state.chestString } 
                 </div>

@@ -3,6 +3,10 @@ pragma solidity ^0.4.25;
 contract PZHeroBase
 {
     struct Hero {
+        uint date;
+        uint price;
+        uint tokenId;
+        uint tokenPrice;
         uint256 genes;
 
         uint64 birthTime;
@@ -103,6 +107,10 @@ contract PZHeroBase
     *
      */
     function createHero(
+        uint _date,
+        uint _price,
+        uint _tokenId,
+        uint _tokenPrice,
         uint256 _matronId,
         uint256 _sireId,
         uint256 _generation,
@@ -123,6 +131,10 @@ contract PZHeroBase
         }
 
         Hero memory _hero = Hero({
+            date: _date,
+            price: _price,
+            tokenId: _tokenId,
+            tokenPrice: _tokenPrice,
             genes: _genes,
             birthTime: uint64(now),
             cooldownEndBlock: 0,

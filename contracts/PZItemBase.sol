@@ -23,6 +23,10 @@ contract PZItemBase
     uint private constant       PZ_ITEM_LIMIT_LEGENDARY = 10000;
 
     struct Item {
+        uint        date;
+        uint        price;
+        uint        tokenId;
+        uint        tokenPrice;
         uint        itemType;           //gear, emote
         uint        itemRarity;         //rare, ep ic, legendary
         uint        itemGroupID;
@@ -30,8 +34,12 @@ contract PZItemBase
     }
 
     struct ItemGroup {
+        uint        price;
+        uint        tokenId;
+        uint        tokenPrice;
         string      itemName;
         uint        itemQuantity;
+        uint        itemTotalAmount;
         uint        itemRarity;
         uint        itemType;
     }
@@ -112,11 +120,11 @@ contract PZItemBase
     * @param _itemType                              Item Type
     *
      */
-    function _createItemGroup(string _itemName, uint _itemQuantity, uint _itemRarity, uint _itemType) internal {
+    function _createItemGroup(uint _price, uint _tokenId, uint _tokenPrice, string _itemName, uint _itemQuantity, uint _itemRarity, uint _itemType) internal {
         require((_itemType >= 0) && (_itemType <= 2));
         require(_itemQuantity > 0);
 
-        itemGroups.push(ItemGroup(_itemName, _itemQuantity, _itemRarity, _itemType));
+        itemGroups.push(ItemGroup(_price, _tokenId, _tokenPrice, _itemName, _itemQuantity, _itemQuantity, _itemRarity, _itemType));
         emit ItemGroupCreated(_itemName, _itemQuantity, _itemRarity, _itemType);
     }
 
@@ -129,11 +137,11 @@ contract PZItemBase
     * @param _itemName                              Item Name
     *
      */
-    function _createItem(address _buyer, uint _itemType, uint _itemRarity, uint _itemGroupID, string _itemName) internal{
+    function _createItem(address _buyer, uint _date, uint _price, uint _tokenId, uint _tokenPrice, uint _itemType, uint _itemRarity, uint _itemGroupID, string _itemName) internal{
         require((_itemType >= 0) && (_itemType <= 2));
         require(_buyer != address(0x0));
 
-        Item memory _item = Item(_itemType, _itemRarity, _itemGroupID, _itemName);
+        Item memory _item = Item(_date, _price, _tokenId, _tokenPrice, _itemType, _itemRarity, _itemGroupID, _itemName);
         uint256 newItemId = items.push(_item) - 1;
         _transfer(0, _buyer, newItemId);
     }

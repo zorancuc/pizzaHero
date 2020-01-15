@@ -76,13 +76,13 @@ contract PZEggCore is PZEggMarketplace
     * @param _sireId                        Sire ID of new Egg
     *
      */
-    function createEggToOwner(address _eggOwner, uint256 _matronId, uint256 _sireId) public {
+    function createEggToOwner(address _eggOwner, uint _date, uint _price, uint _tokenId, uint _tokenPrice, uint256 _matronId, uint256 _sireId) public {
         require((msg.sender == addrChest) || (msg.sender == addrHero));
 
         require(_matronId == uint256(uint32(_matronId)));
         require(_sireId == uint256(uint32(_sireId)));
 
-        _createEgg(_eggOwner, _matronId, _sireId);
+        _createEgg(_eggOwner, _date, _price, _tokenId, _tokenPrice, _matronId, _sireId);
     }
 
     /**
@@ -93,19 +93,10 @@ contract PZEggCore is PZEggMarketplace
     * @return sireId                     Sire ID
     *
      */
-    function getEgg(uint _eggId) public view returns(uint256 matronId, uint256 sireId)
+    function getEgg(uint _eggId) public view returns(uint date, uint price, uint tokenId, uint tokenPrice, uint256 matronId, uint256 sireId)
     {
         Egg memory _egg = eggs[_eggId];
-        return(_egg.matronId, _egg.sireId);
-    }
-
-    /**
-    * Test function for Egg Creation
-    *
-     */
-    function createEggToOwnerForTest(address _eggOwner, uint256 _matronId, uint256 _sireId) public {
-
-        _createEgg(_eggOwner, _matronId, _sireId);
+        return(_egg.date, _egg.price, _egg.tokenId, _egg.tokenPrice, _egg.matronId, _egg.sireId);
     }
 
     /**
@@ -147,8 +138,8 @@ contract PZEggCore is PZEggMarketplace
             childGeneration = 0;
             childGenes = contractGeneScience.generateGene0();
         } else {
-            (matronGene,,cooldownEndBlock,,,,matronGeneration,,) = contractHeroCore.getHero(_egg.matronId);
-            (sireGene,,,,,,sireGeneration,,) = contractHeroCore.getHero(_egg.sireId);
+            (,,,,matronGene,,cooldownEndBlock,,,,matronGeneration,,) = contractHeroCore.getHero(_egg.matronId);
+            (,,,,sireGene,,,,,,sireGeneration,,) = contractHeroCore.getHero(_egg.sireId);
 
             childGeneration = matronGeneration;
             if (sireGeneration > matronGeneration) {
@@ -160,6 +151,6 @@ contract PZEggCore is PZEggMarketplace
 
         _transfer(msg.sender, address(0), _eggId);
         delete eggs[_eggId];
-        contractHeroCore.createHero(_egg.matronId, _egg.sireId, childGeneration, childGenes, 0, msg.sender);
+        contractHeroCore.createHero(now, _egg.price, _egg.tokenId, _egg.tokenPrice, _egg.matronId, _egg.sireId, childGeneration, childGenes, 0, msg.sender);
     }
 }

@@ -66,6 +66,10 @@ contract PZHeroCore is PZHeroFactory
         public
         view
         returns(
+            uint date,
+            uint price,
+            uint tokenId,
+            uint tokenPrice,
             uint256 genes,
             uint64 birthTime,
             uint64 cooldownEndBlock,
@@ -77,7 +81,7 @@ contract PZHeroCore is PZHeroFactory
             uint16 level)
     {
         Hero memory _hero = heroes[_heroId];
-        return (_hero.genes,
+        return (_hero.date, _hero.price, _hero.tokenId, _hero.tokenPrice, _hero.genes,
             _hero.birthTime,
             _hero.cooldownEndBlock,
             _hero.matronId, _hero.sireId,

@@ -177,7 +177,7 @@ contract PZHeroBreeding is PZHeroOwnership
 
         // pregnantHeroes++;
 
-        contractEggCore.createEggToOwner(heroIndexToOwner[_matronId], _matronId, _sireId);
+        contractEggCore.createEggToOwner(heroIndexToOwner[_matronId], now, sire.price, sire.tokenId, sire.tokenPrice, _matronId, _sireId);
 
         emit Pregnant(heroIndexToOwner[_matronId], _matronId, _sireId, matron.cooldownEndBlock);
     }

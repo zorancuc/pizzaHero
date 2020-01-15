@@ -4,47 +4,16 @@ import "./PZItemFactory.sol";
 
 contract PZItemCore is PZItemFactory
 {
+    address private                         addrPool;
     /**
     * Constructor
     *
      */
-    constructor() public
+    constructor(address _pool) public
     {
-
+        require(_pool != address(0x0));
+        addrPool = _pool;
     }
-
-    // function getItems(uint _quantityToCreate) external pure returns(uint[] _items, uint _quantity)
-    // {
-    //     uint[] memory items = new uint[](_quantityToCreate);
-
-    //     return (items, _quantityToCreate);
-    // }
-
-    // function transferItemsToChest(uint _quantityRare, uint _quantityEpic, uint _quantityLegendary) external
-    // {
-    //     require(msg.sender == addrChest);
-
-    //     uint index = 0;
-    //     uint availableQuantity = balanceOf(addrAdmin);
-    //     uint256[] memory itemsAvailable = new uint256[](availableQuantity);
-    //     itemsAvailable = itemsOfOwner(addrAdmin);
-    //     uint[] memory neededQuantity = new uint[](3);
-    //     neededQuantity[0] = _quantityRare;
-    //     neededQuantity[1] = _quantityEpic;
-    //     neededQuantity[2] = _quantityLegendary;
-
-    //     for (index = 0; index < availableQuantity; index ++) {
-    //         Item memory _item = items[itemsAvailable[index]];
-    //         if(neededQuantity[_item.itemRarity] > 0) {
-    //             neededQuantity[_item.itemRarity]--;
-    //         }
-
-    //         _transfer(addrAdmin, addrChest, itemsAvailable[index]);
-    //         if(neededQuantity[0] + neededQuantity[1] + neededQuantity[2] == 0)
-    //             break;
-
-    //     }
-    // }
 
     /**
     * Create Item  NFT to buyer
@@ -59,11 +28,55 @@ contract PZItemCore is PZItemFactory
 
         ItemGroup memory _itemGroup = itemGroups[_itemGroupId];
 
-        _createItem(_buyer, _itemGroup.itemType, _itemGroup.itemRarity, _itemGroupId, _itemGroup.itemName);
+        _createItem(_buyer, now, _itemGroup.price, _itemGroup.tokenId, _itemGroup.tokenPrice, _itemGroup.itemType, _itemGroup.itemRarity, _itemGroupId, _itemGroup.itemName);
         _decreaseQuantityOfItemGroup(_itemGroupId);
 
     }
 
+    function setAddrPool(address _pool) public onlyAdmin
+    {
+        require(_pool != address(0x0));
+
+        addrPool = _pool;
+    }
+
+    function buyItems(uint _itemGroupId, address _referrer, uint itemAmount, bool bTrxPurchase) public payable
+    {
+        // require((block.number >= chests[_chestId].startDate) && (block.number <= chests[_chestId].endDate));
+
+        //Implementation
+        ItemGroup memory _itemGroup = itemGroups[_itemGroupId];
+        require(_itemGroup.itemQuantity > itemAmount);
+
+        uint i = 0;
+
+        if (bTrxPurchase) {
+            require (msg.value == _itemGroup.price * itemAmount);
+            if (_referrer != address(0x0)) {
+                _referrer.transfer(msg.value / 10);
+                addrPool.transfer(msg.value / 10);
+                addrAdmin.transfer(msg.value - msg.value / 10 * 2);
+                // addrAdmin.transfer(msg.value);
+            }
+            for (i = 0; i < itemAmount; i ++) {
+                _createItem(msg.sender, now, _itemGroup.price, _itemGroup.tokenId, 0, _itemGroup.itemType, _itemGroup.itemRarity, _itemGroupId, _itemGroup.itemName);
+                _decreaseQuantityOfItemGroup(_itemGroupId);
+            }
+        } else {
+            require (msg.tokenid == _itemGroup.tokenId);
+            require (msg.tokenvalue == _itemGroup.tokenPrice * itemAmount);
+        
+            if (_referrer != address(0x0)) {
+                _referrer.transferToken(msg.tokenvalue / 10, msg.tokenid);
+                addrPool.transferToken(msg.tokenvalue / 10, msg.tokenid);
+                addrAdmin.transferToken(msg.tokenvalue - msg.tokenvalue / 10 * 2, msg.tokenid);
+            }
+            for (i = 0; i < itemAmount; i ++) {
+                _createItem(msg.sender, now, 0, _itemGroup.tokenId, _itemGroup.tokenPrice, _itemGroup.itemType, _itemGroup.itemRarity, _itemGroupId, _itemGroup.itemName);
+                _decreaseQuantityOfItemGroup(_itemGroupId);
+            }
+        }
+    }
     /**
     * Gift Item to other users
     *
@@ -78,13 +91,6 @@ contract PZItemCore is PZItemFactory
         _transfer(msg.sender, _to, _itemId);
     }
 
-    // function returnItemToAdmin(uint _itemId) external
-    // {
-    //     require(msg.sender == addrChest);
-
-    //     _transfer(addrChest, addrAdmin, _itemId);
-    // }
-
     /**
     * Get Information of Item
     * @param _id                            Item Id
@@ -94,10 +100,10 @@ contract PZItemCore is PZItemFactory
     * @return itemName                      Item Name
     *
      */
-    function getItem(uint _id) external view returns(uint itemType, uint itemRarity, string itemName)
+    function getItem(uint _id) external view returns(uint date, uint price, uint tokenId, uint tokenPrice, uint itemType, uint itemRarity, uint itemGroupId, string itemName)
     {
         Item memory item = items[_id];
-        return (item.itemType, item.itemRarity, item.itemName);
+        return (item.date, item.price, item.tokenId, item.tokenPrice, item.itemType, item.itemRarity, item.itemGroupID, item.itemName);
     }
 
     /**
@@ -120,9 +126,9 @@ contract PZItemCore is PZItemFactory
     * @return itemQuantity                  Item Quantity
     *
      */
-    function getItemGroup(uint _itemGroupId) external view returns(string itemName, uint itemQuantity, uint itemRairty, uint itemType) {
+    function getItemGroup(uint _itemGroupId) external view returns(uint price, uint tokenId, uint tokenPrice, string itemName, uint itemQuantity, uint itemTotalAmount, uint itemRairty, uint itemType) {
         ItemGroup memory _itemGroup = itemGroups[_itemGroupId];
-        return (_itemGroup.itemName, _itemGroup.itemQuantity, _itemGroup.itemRarity, _itemGroup.itemType);
+        return (_itemGroup.price, _itemGroup.tokenId, _itemGroup.tokenPrice, _itemGroup.itemName, _itemGroup.itemQuantity, _itemGroup.itemTotalAmount, _itemGroup.itemRarity, _itemGroup.itemType);
     }
 
     /**

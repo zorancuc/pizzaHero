@@ -8,7 +8,7 @@ module.exports = function(deployer) {
   var poolAddr = "TGVSUv74MSrrhaKwFYf5dcNu2ESxLVgzn9";
 
   deployer.deploy(PZGeneScience).then(() => {
-    return deployer.deploy(PZItemCore).then(() => {
+    return deployer.deploy(PZItemCore, poolAddr).then(() => {
       return deployer.deploy(PZEggCore, PZGeneScience.address).then(() => {      
         return deployer.deploy(PZHeroCore, PZItemCore.address, PZEggCore.address, PZGeneScience.address).then(() => {
           return deployer.deploy(PZChest, PZHeroCore.address, PZItemCore.address, PZEggCore.address, poolAddr).then((instance)=>{

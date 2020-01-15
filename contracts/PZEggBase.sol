@@ -3,6 +3,10 @@ pragma solidity ^0.4.25;
 contract PZEggBase
 {
     struct Egg {
+        uint        date;
+        uint        price;
+        uint        tokenId;
+        uint        tokenPrice;
         uint256 matronId;
         uint256 sireId;
     }
@@ -47,12 +51,12 @@ contract PZEggBase
     * @param _sireId                        Sire ID of new Egg
     *
      */
-    function _createEgg(address _eggOwner, uint256 _matronId, uint256 _sireId) internal
+    function _createEgg(address _eggOwner, uint date, uint price, uint tokenId, uint tokenPrice, uint256 _matronId, uint256 _sireId) internal
     {
         require(_matronId == uint256(uint32(_matronId)));
         require(_sireId == uint256(uint32(_sireId)));
 
-        Egg memory _egg = Egg(_matronId, _sireId);
+        Egg memory _egg = Egg(date, price, tokenId, tokenPrice, _matronId, _sireId);
 
         uint256 newEggId = eggs.push(_egg) - 1;
         _transfer(0, _eggOwner, newEggId);
