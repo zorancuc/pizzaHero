@@ -46,7 +46,8 @@ contract PZItemCore is PZItemFactory
 
         //Implementation
         ItemGroup memory _itemGroup = itemGroups[_itemGroupId];
-        require(_itemGroup.itemQuantity > itemAmount);
+        require(itemAmount > 0);
+        require(_itemGroup.itemQuantity >= itemAmount);
 
         uint i = 0;
 

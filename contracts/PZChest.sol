@@ -441,7 +441,8 @@ contract PZChest
 
         //Implementation
         ChestGroup memory _chestGroup = chestGroups[_chestGroupId];
-        require(_chestGroup.quantity > chestAmount);
+        require(chestAmount > 0);
+        require(_chestGroup.quantity >= chestAmount);
         uint256 newChestId = 0;
         uint i = 0;
 

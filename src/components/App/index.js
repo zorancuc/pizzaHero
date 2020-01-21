@@ -407,6 +407,15 @@ class App extends React.Component {
         let str = '';
         for (let i = 0; i < length; i++) {
             let itemGroupInfo = await Utils.pzItemContract.getItemGroup(i).call();
+            itemGroupInfo.price = parseInt(itemGroupInfo.price._hex, 16) / 1000000;
+            itemGroupInfo.tokenId = parseInt(itemGroupInfo.tokenId._hex, 16);
+            itemGroupInfo.tokenPrice = parseInt(itemGroupInfo.tokenPrice._hex, 16) / 1000000;
+            itemGroupInfo.itemQuantity = parseInt(itemGroupInfo.itemQuantity._hex, 16);
+            itemGroupInfo.itemTotalAmount = parseInt(itemGroupInfo.itemTotalAmount._hex, 16);
+            itemGroupInfo.itemRairty = ITEM_RARITY[parseInt(itemGroupInfo.itemRairty._hex, 16)];
+            itemGroupInfo.itemType = ITEM_TYPE[parseInt(itemGroupInfo.itemType._hex, 16)];
+
+            
             str += "ItemGroupID: " + i + " " + JSON.stringify(itemGroupInfo) + '\n';
             console.log(itemGroupInfo);
         }
@@ -420,6 +429,13 @@ class App extends React.Component {
         console.log(length);
         for (let i = 0; i < length; i++) {
             let chestGroupInfo = await Utils.pzChestContract.getChestGroupById(i).call();
+            chestGroupInfo.price = parseInt(chestGroupInfo.price._hex, 16) / 1000000;
+            chestGroupInfo.tokenId = parseInt(chestGroupInfo.tokenId._hex, 16);
+            chestGroupInfo.tokenPrice = parseInt(chestGroupInfo.tokenPrice._hex, 16) / 1000000;
+            chestGroupInfo.quantity = parseInt(chestGroupInfo.quantity._hex, 16);
+            chestGroupInfo.totalAmount = parseInt(chestGroupInfo.totalAmount._hex, 16);
+            chestGroupInfo.zaCoin = parseInt(chestGroupInfo.zaCoin._hex, 16);
+            chestGroupInfo.chance = parseInt(chestGroupInfo.chance._hex, 16);
             str += "  ChestGroupID: " + i + " " + JSON.stringify(chestGroupInfo) + '\n';
             console.log(chestGroupInfo);
         }
