@@ -60,7 +60,7 @@ const HERO_TRAITS_CODE = [
 const HERO_TRAITS_NAME = [
     [ 
         'Male', 
-        'Femal'
+        'Female'
     ],
     [
         'Calzone',
