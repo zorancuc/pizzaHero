@@ -435,7 +435,16 @@ class App extends React.Component {
             chestGroupInfo.quantity = parseInt(chestGroupInfo.quantity._hex, 16);
             chestGroupInfo.totalAmount = parseInt(chestGroupInfo.totalAmount._hex, 16);
             chestGroupInfo.zaCoin = parseInt(chestGroupInfo.zaCoin._hex, 16);
+            chestGroupInfo.startDate = parseInt(chestGroupInfo.startDate._hex, 16);
+            chestGroupInfo.endDate = parseInt(chestGroupInfo.endDate._hex, 16);
             chestGroupInfo.chance = parseInt(chestGroupInfo.chance._hex, 16);
+            for (let j = 0; j < chestGroupInfo.slot.length; j ++ ) {
+                for (let k = 0; k < chestGroupInfo.slot[j].length; k ++ ) {
+                    // console.log("SLOTSSLOTSSLOTSSLOTSSLOTSSLOTSSLOTSSLOTSSLOTS");
+                    // console.log(chestGroupInfo.slot[j][k]);
+                    chestGroupInfo.slot[j][k] = parseInt(chestGroupInfo.slot[j][k]._hex, 16);
+                }
+            }
             str += "  ChestGroupID: " + i + " " + JSON.stringify(chestGroupInfo) + '\n';
             console.log(chestGroupInfo);
         }
