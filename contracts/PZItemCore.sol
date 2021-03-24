@@ -1,15 +1,15 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZItemFactory.sol";
 
 contract PZItemCore is PZItemFactory
 {
-    address private                         addrPool;
+    address payable private                         addrPool;
     /**
     * Constructor
     *
      */
-    constructor(address _pool) public
+    constructor(address payable _pool) public
     {
         require(_pool != address(0x0));
         addrPool = _pool;
@@ -33,14 +33,14 @@ contract PZItemCore is PZItemFactory
 
     }
 
-    function setAddrPool(address _pool) public onlyAdmin
+    function setAddrPool(address payable _pool) public onlyAdmin
     {
         require(_pool != address(0x0));
 
         addrPool = _pool;
     }
 
-    function buyItems(uint _itemGroupId, address _referrer, uint itemAmount, bool bTrxPurchase) public payable
+    function buyItems(uint _itemGroupId, address payable _referrer, uint itemAmount, bool bTrxPurchase) public payable
     {
         // require((block.number >= chests[_chestId].startDate) && (block.number <= chests[_chestId].endDate));
 
@@ -54,9 +54,9 @@ contract PZItemCore is PZItemFactory
         if (bTrxPurchase) {
             require (msg.value == _itemGroup.price * itemAmount);
             if (_referrer != address(0x0)) {
-                _referrer.transfer(msg.value / 10);
-                addrPool.transfer(msg.value / 10);
-                addrAdmin.transfer(msg.value - msg.value / 10 * 2);
+                address(_referrer).transfer(msg.value / 10);
+                address(addrPool).transfer(msg.value / 10);
+                address(addrAdmin).transfer(msg.value - msg.value / 10 * 2);
                 // addrAdmin.transfer(msg.value);
             }
             for (i = 0; i < itemAmount; i ++) {
@@ -69,8 +69,8 @@ contract PZItemCore is PZItemFactory
         
             if (_referrer != address(0x0)) {
                 _referrer.transferToken(msg.tokenvalue / 10, msg.tokenid);
-                addrPool.transferToken(msg.tokenvalue / 10, msg.tokenid);
-                addrAdmin.transferToken(msg.tokenvalue - msg.tokenvalue / 10 * 2, msg.tokenid);
+                address(addrPool).transferToken(msg.tokenvalue / 10, msg.tokenid);
+                address(addrAdmin).transferToken(msg.tokenvalue - msg.tokenvalue / 10 * 2, msg.tokenid);
             }
             for (i = 0; i < itemAmount; i ++) {
                 _createItem(msg.sender, now, 0, _itemGroup.tokenId, _itemGroup.tokenPrice, _itemGroup.itemType, _itemGroup.itemRarity, _itemGroupId, _itemGroup.itemName);
@@ -101,7 +101,7 @@ contract PZItemCore is PZItemFactory
     * @return itemName                      Item Name
     *
      */
-    function getItem(uint _id) external view returns(uint date, uint price, uint tokenId, uint tokenPrice, uint itemType, uint itemRarity, uint itemGroupId, string itemName)
+    function getItem(uint _id) external view returns(uint date, uint price, uint tokenId, uint tokenPrice, uint itemType, uint itemRarity, uint itemGroupId, string memory itemName)
     {
         Item memory item = items[_id];
         return (item.date, item.price, item.tokenId, item.tokenPrice, item.itemType, item.itemRarity, item.itemGroupID, item.itemName);
@@ -127,7 +127,7 @@ contract PZItemCore is PZItemFactory
     * @return itemQuantity                  Item Quantity
     *
      */
-    function getItemGroup(uint _itemGroupId) external view returns(uint price, uint tokenId, uint tokenPrice, string itemName, uint itemQuantity, uint itemTotalAmount, uint itemRairty, uint itemType) {
+    function getItemGroup(uint _itemGroupId) external view returns(uint price, uint tokenId, uint tokenPrice, string memory itemName, uint itemQuantity, uint itemTotalAmount, uint itemRairty, uint itemType) {
         ItemGroup memory _itemGroup = itemGroups[_itemGroupId];
         return (_itemGroup.price, _itemGroup.tokenId, _itemGroup.tokenPrice, _itemGroup.itemName, _itemGroup.itemQuantity, _itemGroup.itemTotalAmount, _itemGroup.itemRarity, _itemGroup.itemType);
     }

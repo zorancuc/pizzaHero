@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZHeroMarketplace.sol";
 
@@ -23,7 +23,7 @@ contract PZHeroFactory is PZHeroMarketplace
 
     //     // require(newHeroId == uint256(newHeroId));
 
-    //     // _transfer(0, _owner, newHeroId);
+    //     // _transfer(address(0), _owner, newHeroId);
 
     //     return newHeroId;
     // }

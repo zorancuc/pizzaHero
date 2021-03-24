@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 contract PZItemBase
 {
@@ -44,7 +44,7 @@ contract PZItemBase
         uint        itemType;
     }
 
-    address public                          addrAdmin;
+    address payable public                          addrAdmin;
 
     uint[] public                           itemQuantityLimit;
     // uint[][3] public                        itemIDs;
@@ -120,7 +120,7 @@ contract PZItemBase
     * @param _itemType                              Item Type
     *
      */
-    function _createItemGroup(uint _price, uint _tokenId, uint _tokenPrice, string _itemName, uint _itemQuantity, uint _itemRarity, uint _itemType) internal {
+    function _createItemGroup(uint _price, uint _tokenId, uint _tokenPrice, string memory _itemName, uint _itemQuantity, uint _itemRarity, uint _itemType) internal {
         require((_itemType >= 0) && (_itemType <= 2));
         require(_itemQuantity > 0);
 
@@ -137,13 +137,13 @@ contract PZItemBase
     * @param _itemName                              Item Name
     *
      */
-    function _createItem(address _buyer, uint _date, uint _price, uint _tokenId, uint _tokenPrice, uint _itemType, uint _itemRarity, uint _itemGroupID, string _itemName) internal{
+    function _createItem(address _buyer, uint _date, uint _price, uint _tokenId, uint _tokenPrice, uint _itemType, uint _itemRarity, uint _itemGroupID, string memory _itemName) internal{
         require((_itemType >= 0) && (_itemType <= 2));
         require(_buyer != address(0x0));
 
         Item memory _item = Item(_date, _price, _tokenId, _tokenPrice, _itemType, _itemRarity, _itemGroupID, _itemName);
         uint256 newItemId = items.push(_item) - 1;
-        _transfer(0, _buyer, newItemId);
+        _transfer(address(0), _buyer, newItemId);
     }
 
     /**

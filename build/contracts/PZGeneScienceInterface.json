@@ -99,37 +99,37 @@
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.4.25;\n\nimport \"./PZGeneScience.sol\";\n\ncontract PZGeneScienceInterface {\n\n    function isGeneScience() public pure returns (bool);\n\n    function mixGenes(uint256 genes1, uint256 genes2, uint256 targetBlock) public returns (uint256);\n\n    function generateGene0() public returns(uint256);\n    function decode(uint256 _genes) public pure returns(uint8[]);\n    function expressingTraits(uint256 _genes) public pure returns(uint8[14]);\n}",
-  "sourcePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScienceInterface.sol",
+  "source": "pragma solidity ^0.5.0;\n\nimport \"./PZGeneScience.sol\";\n\ncontract PZGeneScienceInterface {\n\n    function isGeneScience() public pure returns (bool);\n\n    function mixGenes(uint256 genes1, uint256 genes2, uint256 targetBlock) public returns (uint256);\n\n    function generateGene0() public returns(uint256);\n    function decode(uint256 _genes) public pure returns(uint8[] memory);\n    function expressingTraits(uint256 _genes) public pure returns(uint8[14] memory);\n}",
+  "sourcePath": "/home/ubuntu/dev/Boby/pizzaHero/contracts/PZGeneScienceInterface.sol",
   "ast": {
-    "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScienceInterface.sol",
+    "absolutePath": "/home/ubuntu/dev/Boby/pizzaHero/contracts/PZGeneScienceInterface.sol",
     "exportedSymbols": {
       "PZGeneScienceInterface": [
-        4207
+        4227
       ]
     },
-    "id": 4208,
+    "id": 4228,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4167,
+        "id": 4187,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".25"
+          "0.5",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:23:8"
       },
       {
-        "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScience.sol",
+        "absolutePath": "/home/ubuntu/dev/Boby/pizzaHero/contracts/PZGeneScience.sol",
         "file": "./PZGeneScience.sol",
-        "id": 4168,
+        "id": 4188,
         "nodeType": "ImportDirective",
-        "scope": 4208,
-        "sourceUnit": 4166,
-        "src": "26:29:8",
+        "scope": 4228,
+        "sourceUnit": 4186,
+        "src": "25:29:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -139,9 +139,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4207,
+        "id": 4227,
         "linearizedBaseContracts": [
-          4207
+          4227
         ],
         "name": "PZGeneScienceInterface",
         "nodeType": "ContractDefinition",
@@ -149,31 +149,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4173,
+            "id": 4193,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
+            "kind": "function",
             "modifiers": [],
             "name": "isGeneScience",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4169,
+              "id": 4189,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "118:2:8"
+              "src": "117:2:8"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 4172,
+              "id": 4192,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4171,
+                  "id": 4191,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4173,
-                  "src": "142:4:8",
+                  "scope": 4193,
+                  "src": "141:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -181,10 +179,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4170,
+                    "id": 4190,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "142:4:8",
+                    "src": "141:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -194,10 +192,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "141:6:8"
+              "src": "140:6:8"
             },
-            "scope": 4207,
-            "src": "96:52:8",
+            "scope": 4227,
+            "src": "95:52:8",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -205,296 +203,11 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4184,
+            "id": 4204,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
+            "kind": "function",
             "modifiers": [],
             "name": "mixGenes",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4180,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4175,
-                  "name": "genes1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "172:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4174,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "172:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 4177,
-                  "name": "genes2",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "188:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4176,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "188:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 4179,
-                  "name": "targetBlock",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "204:19:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4178,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "204:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "171:53:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4183,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4182,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "241:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4181,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "241:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "240:9:8"
-            },
-            "scope": 4207,
-            "src": "154:96:8",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4189,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "generateGene0",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4185,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "278:2:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4188,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4187,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4189,
-                  "src": "296:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4186,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "296:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "295:9:8"
-            },
-            "scope": 4207,
-            "src": "256:49:8",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4197,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "decode",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4192,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4191,
-                  "name": "_genes",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4197,
-                  "src": "326:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4190,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "326:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "325:16:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4196,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4195,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4197,
-                  "src": "362:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint8_$dyn_memory_ptr",
-                    "typeString": "uint8[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 4193,
-                      "name": "uint8",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "362:5:8",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "id": 4194,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "362:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
-                      "typeString": "uint8[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "361:9:8"
-            },
-            "scope": 4207,
-            "src": "310:61:8",
-            "stateMutability": "pure",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4206,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "expressingTraits",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 4200,
@@ -502,11 +215,63 @@
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4199,
-                  "name": "_genes",
+                  "id": 4195,
+                  "name": "genes1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4206,
-                  "src": "402:14:8",
+                  "scope": 4204,
+                  "src": "171:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4194,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "171:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4197,
+                  "name": "genes2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4204,
+                  "src": "187:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4196,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "187:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4199,
+                  "name": "targetBlock",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4204,
+                  "src": "203:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -517,7 +282,7 @@
                     "id": 4198,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:7:8",
+                    "src": "203:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -527,49 +292,274 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:16:8"
+              "src": "170:53:8"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 4205,
+              "id": 4203,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4204,
+                  "id": 4202,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4206,
-                  "src": "438:9:8",
+                  "scope": 4204,
+                  "src": "240:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4201,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "240:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "239:9:8"
+            },
+            "scope": 4227,
+            "src": "153:96:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4209,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "generateGene0",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4205,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "277:2:8"
+            },
+            "returnParameters": {
+              "id": 4208,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4207,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4209,
+                  "src": "295:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4206,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "294:9:8"
+            },
+            "scope": 4227,
+            "src": "255:49:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4217,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "decode",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4212,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4211,
+                  "name": "_genes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4217,
+                  "src": "325:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4210,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "325:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "324:16:8"
+            },
+            "returnParameters": {
+              "id": 4216,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4215,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4217,
+                  "src": "361:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint8_$dyn_memory_ptr",
+                    "typeString": "uint8[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4213,
+                      "name": "uint8",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "361:5:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 4214,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "361:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
+                      "typeString": "uint8[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:16:8"
+            },
+            "scope": 4227,
+            "src": "309:68:8",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4226,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "expressingTraits",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4220,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4219,
+                  "name": "_genes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4226,
+                  "src": "408:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4218,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "408:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:16:8"
+            },
+            "returnParameters": {
+              "id": 4225,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4224,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4226,
+                  "src": "444:16:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$14_memory_ptr",
                     "typeString": "uint8[14]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4201,
+                      "id": 4221,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "438:5:8",
+                      "src": "444:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4203,
+                    "id": 4223,
                     "length": {
                       "argumentTypes": null,
                       "hexValue": "3134",
-                      "id": 4202,
+                      "id": 4222,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "444:2:8",
+                      "src": "450:2:8",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": null,
@@ -578,7 +568,7 @@
                       "value": "14"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "438:9:8",
+                    "src": "444:9:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$14_storage_ptr",
                       "typeString": "uint8[14]"
@@ -588,50 +578,50 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "437:11:8"
+              "src": "443:18:8"
             },
-            "scope": 4207,
-            "src": "376:73:8",
+            "scope": 4227,
+            "src": "382:80:8",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4208,
-        "src": "57:394:8"
+        "scope": 4228,
+        "src": "56:408:8"
       }
     ],
-    "src": "0:451:8"
+    "src": "0:464:8"
   },
   "legacyAST": {
-    "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScienceInterface.sol",
+    "absolutePath": "/home/ubuntu/dev/Boby/pizzaHero/contracts/PZGeneScienceInterface.sol",
     "exportedSymbols": {
       "PZGeneScienceInterface": [
-        4207
+        4227
       ]
     },
-    "id": 4208,
+    "id": 4228,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 4167,
+        "id": 4187,
         "literals": [
           "solidity",
           "^",
-          "0.4",
-          ".25"
+          "0.5",
+          ".0"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:8"
+        "src": "0:23:8"
       },
       {
-        "absolutePath": "/Volumes/Backup/workspace/Dave(Tron_NFT)/pizzaHero/contracts/PZGeneScience.sol",
+        "absolutePath": "/home/ubuntu/dev/Boby/pizzaHero/contracts/PZGeneScience.sol",
         "file": "./PZGeneScience.sol",
-        "id": 4168,
+        "id": 4188,
         "nodeType": "ImportDirective",
-        "scope": 4208,
-        "sourceUnit": 4166,
-        "src": "26:29:8",
+        "scope": 4228,
+        "sourceUnit": 4186,
+        "src": "25:29:8",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -641,9 +631,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 4207,
+        "id": 4227,
         "linearizedBaseContracts": [
-          4207
+          4227
         ],
         "name": "PZGeneScienceInterface",
         "nodeType": "ContractDefinition",
@@ -651,31 +641,29 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4173,
+            "id": 4193,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
+            "kind": "function",
             "modifiers": [],
             "name": "isGeneScience",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 4169,
+              "id": 4189,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "118:2:8"
+              "src": "117:2:8"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 4172,
+              "id": 4192,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4171,
+                  "id": 4191,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4173,
-                  "src": "142:4:8",
+                  "scope": 4193,
+                  "src": "141:4:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -683,10 +671,10 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 4170,
+                    "id": 4190,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
-                    "src": "142:4:8",
+                    "src": "141:4:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_bool",
                       "typeString": "bool"
@@ -696,10 +684,10 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "141:6:8"
+              "src": "140:6:8"
             },
-            "scope": 4207,
-            "src": "96:52:8",
+            "scope": 4227,
+            "src": "95:52:8",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
@@ -707,296 +695,11 @@
           {
             "body": null,
             "documentation": null,
-            "id": 4184,
+            "id": 4204,
             "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
+            "kind": "function",
             "modifiers": [],
             "name": "mixGenes",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4180,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4175,
-                  "name": "genes1",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "172:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4174,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "172:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 4177,
-                  "name": "genes2",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "188:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4176,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "188:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                },
-                {
-                  "constant": false,
-                  "id": 4179,
-                  "name": "targetBlock",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "204:19:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4178,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "204:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "171:53:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4183,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4182,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4184,
-                  "src": "241:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4181,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "241:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "240:9:8"
-            },
-            "scope": 4207,
-            "src": "154:96:8",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4189,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": false,
-            "modifiers": [],
-            "name": "generateGene0",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4185,
-              "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "278:2:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4188,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4187,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4189,
-                  "src": "296:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4186,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "296:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "295:9:8"
-            },
-            "scope": 4207,
-            "src": "256:49:8",
-            "stateMutability": "nonpayable",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4197,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "decode",
-            "nodeType": "FunctionDefinition",
-            "parameters": {
-              "id": 4192,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4191,
-                  "name": "_genes",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4197,
-                  "src": "326:14:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_uint256",
-                    "typeString": "uint256"
-                  },
-                  "typeName": {
-                    "id": 4190,
-                    "name": "uint256",
-                    "nodeType": "ElementaryTypeName",
-                    "src": "326:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_uint256",
-                      "typeString": "uint256"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "325:16:8"
-            },
-            "payable": false,
-            "returnParameters": {
-              "id": 4196,
-              "nodeType": "ParameterList",
-              "parameters": [
-                {
-                  "constant": false,
-                  "id": 4195,
-                  "name": "",
-                  "nodeType": "VariableDeclaration",
-                  "scope": 4197,
-                  "src": "362:7:8",
-                  "stateVariable": false,
-                  "storageLocation": "default",
-                  "typeDescriptions": {
-                    "typeIdentifier": "t_array$_t_uint8_$dyn_memory_ptr",
-                    "typeString": "uint8[]"
-                  },
-                  "typeName": {
-                    "baseType": {
-                      "id": 4193,
-                      "name": "uint8",
-                      "nodeType": "ElementaryTypeName",
-                      "src": "362:5:8",
-                      "typeDescriptions": {
-                        "typeIdentifier": "t_uint8",
-                        "typeString": "uint8"
-                      }
-                    },
-                    "id": 4194,
-                    "length": null,
-                    "nodeType": "ArrayTypeName",
-                    "src": "362:7:8",
-                    "typeDescriptions": {
-                      "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
-                      "typeString": "uint8[]"
-                    }
-                  },
-                  "value": null,
-                  "visibility": "internal"
-                }
-              ],
-              "src": "361:9:8"
-            },
-            "scope": 4207,
-            "src": "310:61:8",
-            "stateMutability": "pure",
-            "superFunction": null,
-            "visibility": "public"
-          },
-          {
-            "body": null,
-            "documentation": null,
-            "id": 4206,
-            "implemented": false,
-            "isConstructor": false,
-            "isDeclaredConst": true,
-            "modifiers": [],
-            "name": "expressingTraits",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 4200,
@@ -1004,11 +707,63 @@
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4199,
-                  "name": "_genes",
+                  "id": 4195,
+                  "name": "genes1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4206,
-                  "src": "402:14:8",
+                  "scope": 4204,
+                  "src": "171:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4194,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "171:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4197,
+                  "name": "genes2",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4204,
+                  "src": "187:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4196,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "187:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4199,
+                  "name": "targetBlock",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4204,
+                  "src": "203:19:8",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -1019,7 +774,7 @@
                     "id": 4198,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
-                    "src": "402:7:8",
+                    "src": "203:7:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
@@ -1029,49 +784,274 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "401:16:8"
+              "src": "170:53:8"
             },
-            "payable": false,
             "returnParameters": {
-              "id": 4205,
+              "id": 4203,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 4204,
+                  "id": 4202,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 4206,
-                  "src": "438:9:8",
+                  "scope": 4204,
+                  "src": "240:7:8",
                   "stateVariable": false,
                   "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4201,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "240:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "239:9:8"
+            },
+            "scope": 4227,
+            "src": "153:96:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4209,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "generateGene0",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4205,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "277:2:8"
+            },
+            "returnParameters": {
+              "id": 4208,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4207,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4209,
+                  "src": "295:7:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4206,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "294:9:8"
+            },
+            "scope": 4227,
+            "src": "255:49:8",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4217,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "decode",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4212,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4211,
+                  "name": "_genes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4217,
+                  "src": "325:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4210,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "325:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "324:16:8"
+            },
+            "returnParameters": {
+              "id": 4216,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4215,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4217,
+                  "src": "361:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint8_$dyn_memory_ptr",
+                    "typeString": "uint8[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 4213,
+                      "name": "uint8",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "361:5:8",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "id": 4214,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "361:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint8_$dyn_storage_ptr",
+                      "typeString": "uint8[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "360:16:8"
+            },
+            "scope": 4227,
+            "src": "309:68:8",
+            "stateMutability": "pure",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 4226,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "expressingTraits",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4220,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4219,
+                  "name": "_genes",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4226,
+                  "src": "408:14:8",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4218,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "408:7:8",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "407:16:8"
+            },
+            "returnParameters": {
+              "id": 4225,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4224,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4226,
+                  "src": "444:16:8",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
                   "typeDescriptions": {
                     "typeIdentifier": "t_array$_t_uint8_$14_memory_ptr",
                     "typeString": "uint8[14]"
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 4201,
+                      "id": 4221,
                       "name": "uint8",
                       "nodeType": "ElementaryTypeName",
-                      "src": "438:5:8",
+                      "src": "444:5:8",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint8",
                         "typeString": "uint8"
                       }
                     },
-                    "id": 4203,
+                    "id": 4223,
                     "length": {
                       "argumentTypes": null,
                       "hexValue": "3134",
-                      "id": 4202,
+                      "id": 4222,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "kind": "number",
                       "lValueRequested": false,
                       "nodeType": "Literal",
-                      "src": "444:2:8",
+                      "src": "450:2:8",
                       "subdenomination": null,
                       "typeDescriptions": {
                         "typeIdentifier": null,
@@ -1080,7 +1060,7 @@
                       "value": "14"
                     },
                     "nodeType": "ArrayTypeName",
-                    "src": "438:9:8",
+                    "src": "444:9:8",
                     "typeDescriptions": {
                       "typeIdentifier": "t_array$_t_uint8_$14_storage_ptr",
                       "typeString": "uint8[14]"
@@ -1090,26 +1070,26 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "437:11:8"
+              "src": "443:18:8"
             },
-            "scope": 4207,
-            "src": "376:73:8",
+            "scope": 4227,
+            "src": "382:80:8",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 4208,
-        "src": "57:394:8"
+        "scope": 4228,
+        "src": "56:408:8"
       }
     ],
-    "src": "0:451:8"
+    "src": "0:464:8"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.4.25+commit.69a1e720.Emscripten.clang"
+    "version": "0.5.4+commit.d15a3125.mod.Emscripten.clang"
   },
   "networks": {},
   "schemaVersion": "2.0.1",
-  "updatedAt": "2020-01-20T04:54:37.234Z"
+  "updatedAt": "2021-03-24T05:12:23.494Z"
 }

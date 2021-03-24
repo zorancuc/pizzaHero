@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZEggBase.sol";
 import "./TRC721.sol";
@@ -182,7 +182,7 @@ contract PZEggOwnership is PZEggBase, TRC721
     * @return ownerEggs                     Owner's Eggs
     *
      */
-    function eggsOfOwner(address _owner) public view returns(uint256[] ownerEggs) {
+    function eggsOfOwner(address _owner) public view returns(uint256[] memory ownerEggs) {
         uint256 eggCount = balanceOf(_owner);
 
         if (eggCount == 0) {
@@ -225,7 +225,7 @@ contract PZEggOwnership is PZEggBase, TRC721
         }
     }
 
-    function _toString(bytes32[4] _rawBytes, uint256 _stringLength) private pure returns (string) {
+    function _toString(bytes32[4] memory _rawBytes, uint256 _stringLength) private pure returns (string memory) {
         string memory outputString = new string(_stringLength);
         uint256 outputPtr;
         uint256 bytesPtr;

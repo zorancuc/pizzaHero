@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZItemBase.sol";
 import "./TRC721.sol";
@@ -183,7 +183,7 @@ contract PZItemOwnership is PZItemBase, TRC721
     * @return ownerItems                    Owner's Items
     *
      */
-    function itemsOfOwner(address _owner) public view returns(uint256[] ownerItems) {
+    function itemsOfOwner(address _owner) public view returns(uint256[] memory ownerItems) {
         uint256 itemCount = balanceOf(_owner);
 
         if (itemCount == 0) {
@@ -226,7 +226,7 @@ contract PZItemOwnership is PZItemBase, TRC721
         }
     }
 
-    function _toString(bytes32[4] _rawBytes, uint256 _stringLength) private pure returns (string) {
+    function _toString(bytes32[4] memory _rawBytes, uint256 _stringLength) private pure returns (string memory) {
         string memory outputString = new string(_stringLength);
         uint256 outputPtr;
         uint256 bytesPtr;

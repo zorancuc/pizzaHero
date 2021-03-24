@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 contract PZHeroBase
 {
@@ -43,7 +43,7 @@ contract PZHeroBase
     uint8 internal constant TRAIT_COUNT = 14;
 
     uint256 public                          secondsPerBlock = 15;
-    address public                          addrAdmin;
+    address payable public                          addrAdmin;
 
     address public                          addrChest;
     address public                          addrItemCore;
@@ -159,7 +159,7 @@ contract PZHeroBase
             _hero.level
         );
 
-        _transfer(0, _owner, newHeroId);
+        _transfer(address(0), _owner, newHeroId);
 
         return newHeroId;
     }

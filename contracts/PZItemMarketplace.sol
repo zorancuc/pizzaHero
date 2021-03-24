@@ -1,11 +1,11 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZItemOwnership.sol";
 
 contract PZItemMarketplace is PZItemOwnership
 {
     struct ItemAuction {
-        address seller;
+        address payable seller;
         uint256 startingPrice;
         uint256 itemId;
         // uint256 endingPrice;
@@ -31,9 +31,9 @@ contract PZItemMarketplace is PZItemOwnership
     * @return itemsOfOwner               Items of Owner
     *
      */
-    function getItemIdsOnSale() public view returns(uint256[])
+    function getItemIdsOnSale() public view returns(uint256[] memory)
     {
-        return itemsOfOwner(this);
+        return itemsOfOwner(address(this));
     }
 
     /**
@@ -50,7 +50,7 @@ contract PZItemMarketplace is PZItemOwnership
         ItemAuction memory _auction = ItemAuction(msg.sender, _price, _itemId);
 
         // uint256 newAuctionId = ItemAuctions.push(_auction) - 1;
-        _transfer(msg.sender, this, _itemId);
+        _transfer(msg.sender, address(this), _itemId);
         itemIdToAuction[_itemId] = _auction;
     }
 
@@ -121,8 +121,8 @@ contract PZItemMarketplace is PZItemOwnership
         require(_auction.startingPrice == msg.value);
 
         _removeAuction(_itemId);
-        _transfer(this, msg.sender, _itemId);
-        _auction.seller.transfer(msg.value);
+        _transfer(address(this), msg.sender, _itemId);
+        address(_auction.seller).transfer(msg.value);
     }
 
     /**
@@ -138,6 +138,6 @@ contract PZItemMarketplace is PZItemOwnership
         require(msg.sender == _auction.seller);
 
         _removeAuction(_itemId);
-        _transfer(this, msg.sender, _itemId);
+        _transfer(address(this), msg.sender, _itemId);
     }
 }

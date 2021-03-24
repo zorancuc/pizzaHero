@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZHeroOwnership.sol";
 import "./PZGeneScienceInterface.sol";
@@ -41,7 +41,7 @@ contract PZHeroBreeding is PZHeroOwnership
     * @return result                            Return bool typed result
     *
      */
-    function _isReadyToBreed(Hero _hero) internal view returns (bool) {
+    function _isReadyToBreed(Hero memory _hero) internal view returns (bool) {
         // return (_hero.siringWithId == 0) && (_hero.cooldownEndBlock <= uint64(block.number));
 
         return (_hero.cooldownEndBlock <= uint64(block.number));
@@ -233,7 +233,7 @@ contract PZHeroBreeding is PZHeroOwnership
         _breedWith(_matronId, _sireId);
     }
 
-    function breedTest() public pure returns(string)
+    function breedTest() public pure returns(string memory)
     {
         return "Breed Test";
     }

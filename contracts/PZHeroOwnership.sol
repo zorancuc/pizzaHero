@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZHeroBase.sol";
 import "./TRC721.sol";
@@ -183,7 +183,7 @@ contract PZHeroOwnership is PZHeroBase, TRC721
     * @return ownerHeroes                   Owner's Heroes
     *
      */
-    function heroesOfOwner(address _owner) public view returns(uint256[] ownerHeroes) {
+    function heroesOfOwner(address _owner) public view returns(uint256[] memory ownerHeroes) {
         uint256 heroCount = balanceOf(_owner);
 
         if (heroCount == 0) {
@@ -226,7 +226,7 @@ contract PZHeroOwnership is PZHeroBase, TRC721
         }
     }
 
-    function _toString(bytes32[4] _rawBytes, uint256 _stringLength) private pure returns (string) {
+    function _toString(bytes32[4] memory _rawBytes, uint256 _stringLength) private pure returns (string memory) {
         string memory outputString = new string(_stringLength);
         uint256 outputPtr;
         uint256 bytesPtr;

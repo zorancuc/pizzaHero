@@ -1,25 +1,14 @@
 module.exports = {
   networks: {
     development: {
-// For trontools/quickstart docker image
-      // privateKey: 'da146374a75310b9666e834ee4ad0866d6f4035967bfc76217c5a495fff9f0d0',
-      // consume_user_resource_percent: 30,
-      // fee_limit: 100000000,
-      // fullNode: "http://127.0.0.1:9090",
-      // solidityNode: "http://127.0.0.1:9090",
-      // eventServer: "http://127.0.0.1:9090",
-      // network_id: "*"
-      // privateKey: '4a7f9d3cac2b005979163418c62caf074f9d3533b27d3dc7cbfa732430566547',
-    //  privateKey: 'd3c9322e5493fe9cd012d2a7f552b6c0514d20eec451970e1c0c5850546ea950',
-      privateKey: '8e91bf8fabffb479a9b3541f6bbee310c8fc3e64c7c879fa899396056e30597a',
-      // privateKey: '1f0a3fe6b37a6ac3970c322e0cba72183c8152c2afd0746a298dfe4eb14343e3',
-      consume_user_resource_percent: 30,
-      fee_limit: 1000000000,
-      fullNode: "https://api.shasta.trongrid.io",
-      solidityNode: "https://api.shasta.trongrid.io",
-      eventServer: "https://api.shasta.trongrid.io",
-      network_id: "*"
-    },
+      from: 'TWR1yKXx7RkLBdci5dXEhKULvykRx9Ec7K',
+      privateKey: '9dc46ee4d29fbeddaac396bb66d232a74a5e24c9c763f38f4b04e832cb09b983',
+      userFeePercentage: 30,
+      feeLimit: 1e9,
+      originEnergyLimit: 1e7,
+      fullHost: "https://api.shasta.trongrid.io",
+      network_id: "*" // Match any network id
+  },
     shasta: {
       privateKey: 'd3c9322e5493fe9cd012d2a7f552b6c0514d20eec451970e1c0c5850546ea950',
       consume_user_resource_percent: 30,

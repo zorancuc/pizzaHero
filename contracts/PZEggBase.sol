@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 contract PZEggBase
 {
@@ -11,7 +11,7 @@ contract PZEggBase
         uint256 sireId;
     }
 
-    address public                          addrAdmin;
+    address payable public                          addrAdmin;
 
     Egg[]   public                          eggs;
 
@@ -59,7 +59,7 @@ contract PZEggBase
         Egg memory _egg = Egg(date, price, tokenId, tokenPrice, _matronId, _sireId);
 
         uint256 newEggId = eggs.push(_egg) - 1;
-        _transfer(0, _eggOwner, newEggId);
+        _transfer(address(0), _eggOwner, newEggId);
     }
 
     /**

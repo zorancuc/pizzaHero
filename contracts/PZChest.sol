@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 pragma experimental ABIEncoderV2;
 
 import "./PZHeroCore.sol";
@@ -97,9 +97,9 @@ contract PZChest
     address private                         addrHeroCore;
     address private                         addrItemCore;
     address private                         addrEggCore;
-    address private                         addrPool;
+    address payable private                         addrPool;
     address private                         addrEVO;
-    address private                         addrAdmin;
+    address payable private                         addrAdmin;
     // address private                         addrToken;
 
     PZItemCore public                       contractItemCore;
@@ -121,7 +121,7 @@ contract PZChest
     *
     */
 
-    constructor(address _heroCore, address _itemCore, address _eggCore, address _pool) public
+    constructor(address _heroCore, address _itemCore, address _eggCore, address payable _pool) public
     {
         require(_heroCore != address(0));
         require(_itemCore != address(0));
@@ -208,7 +208,7 @@ contract PZChest
     * @param _pool                   new address of pool
     *
     */
-    function setPoolAddress(address _pool) public onlyAdmin
+    function setPoolAddress(address payable _pool) public onlyAdmin
     {
         require(_pool != address(0x0));
 
@@ -222,7 +222,7 @@ contract PZChest
     * @param _addrAdmin                   new address of Admin
     *
     */
-    function changeAdmin(address _addrAdmin) public onlyAdmin
+    function changeAdmin(address payable _addrAdmin) public onlyAdmin
     {
         addrAdmin = _addrAdmin;
         emit ChangeAdmin(addrAdmin, _addrAdmin);
@@ -242,7 +242,7 @@ contract PZChest
     *
     */
     function createChestGroup(
-            string _name,
+            string memory _name,
             uint _quantity,
             uint _price,
             uint _tokenId,
@@ -251,7 +251,7 @@ contract PZChest
             uint _endDate,
             uint _zaCoin,
             uint _chance,
-            uint[][] _slot,
+            uint[][] memory  _slot,
             bool _eggFlag)
         public
         onlyAdmin
@@ -282,7 +282,7 @@ contract PZChest
     * @return itemGroupId                       Id of Itemgroup
     *
     */
-    function _getItemGroupIdFromSlot(uint num, uint[] itemSlot)
+    function _getItemGroupIdFromSlot(uint num, uint[] memory itemSlot)
         private
         view
         returns(bool, uint256)
@@ -435,7 +435,7 @@ contract PZChest
     * @param bTrxPurchase                           flag whether the purchase is by TRX or TRC10 token
     *
     */
-    function buyChest(uint _chestGroupId, address _referrer, uint chestAmount, bool bTrxPurchase) public payable
+    function buyChest(uint _chestGroupId, address payable _referrer, uint chestAmount, bool bTrxPurchase) public payable
     {
         // require((block.number >= chests[_chestId].startDate) && (block.number <= chests[_chestId].endDate));
 
@@ -449,15 +449,15 @@ contract PZChest
         if (bTrxPurchase) {
             require (msg.value == _chestGroup.price * chestAmount);
             if (_referrer != address(0x0)) {
-                _referrer.transfer(msg.value / 10);
-                addrPool.transfer(msg.value / 10);
-                addrAdmin.transfer(msg.value - msg.value / 10 * 2);
+                address(_referrer).transfer(msg.value / 10);
+                address(addrPool).transfer(msg.value / 10);
+                address(addrAdmin).transfer(msg.value - msg.value / 10 * 2);
                 // addrAdmin.transfer(msg.value);
             }
             for (i = 0; i < chestAmount; i ++) {
                 newChestId = chests.push(Chest(now, _chestGroup.name, _chestGroup.price, _chestGroup.tokenId, 0, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
                 chestGroups[_chestGroupId].quantity = chestGroups[_chestGroupId].quantity - 1;
-                _transfer(0, msg.sender, newChestId);
+                _transfer(address(0), msg.sender, newChestId);
                 emit BuyChest(msg.sender, _chestGroupId, _referrer, bTrxPurchase);
             }
         } else {
@@ -479,7 +479,7 @@ contract PZChest
             for (i = 0; i < chestAmount; i ++) {
                 newChestId = chests.push(Chest(now, _chestGroup.name, 0, _chestGroup.tokenId, _chestGroup.tokenPrice, _chestGroup.zaCoin, _chestGroup.chance, _chestGroup.slot, _chestGroup.eggFlag)) - 1;
                 chestGroups[_chestGroupId].quantity = chestGroups[_chestGroupId].quantity - 1;
-                _transfer(0, msg.sender, newChestId);
+                _transfer(address(0), msg.sender, newChestId);
             }
             emit BuyChest(msg.sender, _chestGroupId, _referrer, bTrxPurchase);
         }
@@ -506,7 +506,7 @@ contract PZChest
     *
     */
     function getChestById(uint _id) external view returns(
-        uint date, string name, uint price, uint tokenId, uint tokenPrice, uint zaCoin, uint chance, uint[][] slot, bool eggFlag
+        uint date, string memory name, uint price, uint tokenId, uint tokenPrice, uint zaCoin, uint chance, uint[][] memory slot, bool eggFlag
         )
     {
         Chest memory chest = chests[_id];
@@ -539,7 +539,7 @@ contract PZChest
     function getChestGroupById(uint _chestGroupId)
         external
         view
-        returns(string name, uint quantity, uint totalAmount, uint price, uint tokenId, uint tokenPrice, uint startDate, uint endDate, uint zaCoin, uint chance, uint[][] slot, bool eggFlag)
+        returns(string memory name, uint quantity, uint totalAmount, uint price, uint tokenId, uint tokenPrice, uint startDate, uint endDate, uint zaCoin, uint chance, uint[][] memory slot, bool eggFlag)
     {
         ChestGroup memory _chestGroup = chestGroups[_chestGroupId];
         return(_chestGroup.name,
@@ -623,7 +623,7 @@ contract PZChest
     * @return ownerChests                   chests array
     *
     */
-    function chestsOfOwner(address _owner) external view returns(uint256[] ownerChests) {
+    function chestsOfOwner(address _owner) external view returns(uint256[] memory ownerChests) {
         uint256 chestCount = balanceOf(_owner);
 
         if (chestCount == 0) {

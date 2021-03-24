@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 contract PZGeneScience {
     bool public isGeneScience = true;
@@ -141,7 +141,7 @@ contract PZGeneScience {
     * @return traits                   Traits array from Gene
     *
      */
-    function decode(uint256 _genes) public pure returns(uint8[]) {
+    function decode(uint256 _genes) public pure returns(uint8[] memory) {
         uint8[] memory traits = new uint8[](TRAIT_COUNT * 4);
         uint256 i;
         for(i = 0; i < TRAIT_COUNT * 4; i++) {
@@ -157,7 +157,7 @@ contract PZGeneScience {
     * @return _genes                   Gene from Traits array
     *
      */
-    function encode(uint8[] _traits) public pure returns (uint256 _genes) {
+    function encode(uint8[] memory _traits) public pure returns (uint256 _genes) {
         _genes = 0;
         for(uint256 i = 0; i < TRAIT_COUNT * 4; i++) {
             _genes = _genes << 5;
@@ -173,7 +173,7 @@ contract PZGeneScience {
     * @return express                   Expressing Traits array from Gene
     *
      */
-    function expressingTraits(uint256 _genes) public pure returns(uint8[TRAIT_COUNT]) {
+    function expressingTraits(uint256 _genes) public pure returns(uint8[TRAIT_COUNT] memory) {
         uint8[TRAIT_COUNT] memory express;
         for(uint256 i = 0; i < TRAIT_COUNT; i++) {
             express[i] = _get5Bits(_genes, i * 4);
@@ -203,7 +203,7 @@ contract PZGeneScience {
     * @return traits                   Random Traits array
     *
      */
-    function generateTraits() public view returns(uint8[])
+    function generateTraits() public view returns(uint8[] memory)
     {   
         uint8[] memory traits = new uint8[](TRAIT_COUNT * 4);
         uint256 rand = 0;
@@ -279,7 +279,7 @@ contract PZGeneScience {
         for(traitPos = 0; traitPos < TRAIT_COUNT * 4; traitPos++) {
 
             uint8 ascendedTrait = 0;
-
+            uint256 rand;
             if ((traitPos % 4 == 0) && (genes1Array[traitPos] & 1) != (genes2Array[traitPos] & 1)) {
                 rand = _sliceNumber(randomN, 3, randomIndex);
                 randomIndex += 3;
@@ -308,7 +308,7 @@ contract PZGeneScience {
     * Check function of GeneScience contract
     *
     */
-    function geneTest() public pure returns(string) {
+    function geneTest() public pure returns(string memory) {
         return "Gene Test";
     }
 }

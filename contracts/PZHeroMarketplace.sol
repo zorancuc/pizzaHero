@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZHeroBreeding.sol";
 
@@ -8,7 +8,7 @@ contract PZHeroMarketplace is PZHeroBreeding
     uint8 private constant       PZ_HERO_AUCTION_SIRE = 1;
 
     struct HeroAuction {
-        address seller;
+        address payable seller;
         uint256 startingPrice;
         uint256 heroId;
         uint8   auctionType;
@@ -35,9 +35,9 @@ contract PZHeroMarketplace is PZHeroBreeding
     * @return heroesOfOwner               Heroes of Owner
     *
      */
-    function getHeroIdsOnSale() public view returns(uint256[])
+    function getHeroIdsOnSale() public view returns(uint256[] memory)
     {
-        return heroesOfOwner(this);
+        return heroesOfOwner(address(this));
     }
 
     /**
@@ -56,7 +56,7 @@ contract PZHeroMarketplace is PZHeroBreeding
         HeroAuction memory _auction = HeroAuction(msg.sender, _price, _heroId, _auctionType);
 
         // uint256 newAuctionId = HeroAuctions.push(_auction) - 1;
-        _transfer(msg.sender, this, _heroId);
+        _transfer(msg.sender, address(this), _heroId);
         heroIdToAuction[_heroId] = _auction;
     }
 
@@ -116,8 +116,8 @@ contract PZHeroMarketplace is PZHeroBreeding
         require(_auction.auctionType == PZ_HERO_AUCTION_SALE);
 
         _removeAuction(_heroId);
-        _transfer(this, msg.sender, _heroId);
-        _auction.seller.transfer(msg.value);
+        _transfer(address(this), msg.sender, _heroId);
+        address(_auction.seller).transfer(msg.value);
     }
 
     /**
@@ -136,9 +136,9 @@ contract PZHeroMarketplace is PZHeroBreeding
         require(_auction.auctionType == PZ_HERO_AUCTION_SIRE);
 
         _removeAuction(_heroId);
-        _transfer(this, _auction.seller, _heroId);
+        _transfer(address(this), _auction.seller, _heroId);
         _breedWith(_heroId, _sireId);
-        _auction.seller.transfer(msg.value);
+        address(_auction.seller).transfer(msg.value);
     }
 
     /**
@@ -154,6 +154,6 @@ contract PZHeroMarketplace is PZHeroBreeding
         require(msg.sender == _auction.seller);
 
         _removeAuction(_heroId);
-        _transfer(this, msg.sender, _heroId);
+        _transfer(address(this), msg.sender, _heroId);
     }
 }

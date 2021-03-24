@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZHeroFactory.sol";
 
@@ -95,7 +95,7 @@ contract PZHeroCore is PZHeroFactory
     * @return traits
     *
      */
-    function getHeroTraits(uint _heroId) public view returns(uint8[]) {
+    function getHeroTraits(uint _heroId) public view returns(uint8[] memory) {
         Hero memory _hero = heroes[_heroId];
         return contractGeneScience.decode(_hero.genes);
     }
@@ -106,7 +106,7 @@ contract PZHeroCore is PZHeroFactory
     *
     *
      */
-    function getHeroAppearance(uint _heroId) public view returns(uint8[14]){
+    function getHeroAppearance(uint _heroId) public view returns(uint8[14] memory){
         Hero memory _hero = heroes[_heroId];
         return contractGeneScience.expressingTraits(_hero.genes);
     }

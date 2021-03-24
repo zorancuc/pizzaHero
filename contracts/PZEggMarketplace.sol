@@ -1,11 +1,11 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.0;
 
 import "./PZEggOwnership.sol";
 
 contract PZEggMarketplace is PZEggOwnership
 {
     struct EggAuction {
-        address seller;
+        address payable seller;
         uint256 startingPrice;
         uint256 eggId;
         // uint256 endingPrice;
@@ -31,9 +31,9 @@ contract PZEggMarketplace is PZEggOwnership
     * @return eggsOfOwner               Eggs of Owner
     *
      */
-    function getEggIdsOnSale() external view returns(uint256[])
+    function getEggIdsOnSale() external view returns(uint256[] memory)
     {
-        return eggsOfOwner(this);
+        return eggsOfOwner(address(this));
     }
 
     /**
@@ -50,7 +50,7 @@ contract PZEggMarketplace is PZEggOwnership
 
         EggAuction memory _auction = EggAuction(msg.sender, _price, _eggId);
 
-        _transfer(msg.sender, this, _eggId);
+        _transfer(msg.sender, address(this), _eggId);
         eggIdToAuction[_eggId] = _auction;
     }
 
@@ -121,7 +121,7 @@ contract PZEggMarketplace is PZEggOwnership
         require(_auction.startingPrice == msg.value);
 
         _removeAuction(_eggId);
-        _transfer(this, msg.sender, _eggId);
+        _transfer(address(this), msg.sender, _eggId);
         _auction.seller.transfer(msg.value);
     }
 
@@ -138,6 +138,6 @@ contract PZEggMarketplace is PZEggOwnership
         require(msg.sender == _auction.seller);
 
         _removeAuction(_eggId);
-        _transfer(this, msg.sender, _eggId);
+        _transfer(address(this), msg.sender, _eggId);
     }
 }
